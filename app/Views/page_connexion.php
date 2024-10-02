@@ -14,7 +14,7 @@
         <h1>Bienvenue sur l'application web Amset</h1>
     </header>
     <main>
-        <form method="post" action="">
+        <form method="post" action="<?= url_to('list_mission')?>">
 
             <label for="Identifiant"> Identifiant </label>
             <input id="Identifiant" name='Identifiant' type="text">

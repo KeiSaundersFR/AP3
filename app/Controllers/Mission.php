@@ -4,8 +4,8 @@ namespace App\Controllers;
 
 class Mission extends BaseController
 {
-    public function index(): string
+    public function list(): string
     {
-        return view('welcome_message');
+        return view('liste_missions.php');
     }
 }
