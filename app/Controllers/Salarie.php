@@ -13,20 +13,22 @@ class Salarie extends BaseController
 
     public function list(): string
     {
-        $salarie = $this->salarieModel = model("Salarie");
-        return view('salarie/list_salarie');
+        $salaries = $this->salarieModel->findAll();
+        return view('salarie/list_salarie', [
+            'listSalarie' => $salaries
+        ]);
     }
 
     public function ajout(): string
     {
-        return view('ajout_salarie');
+        return view('salarie/ajout_salarie');
     }
 
     public function modif($salarieId): string
     {
         $salarie_update = $this->salarieModel->find($salarieId);
 
-        return view('update_salarie', [
+        return view('salarie/update_salarie', [
             'salarie' => $salarie_update
         ]);
     }
