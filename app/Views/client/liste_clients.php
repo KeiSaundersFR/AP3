@@ -4,7 +4,7 @@
 <link rel="stylesheet" type="text/css" href="css/main.css" />
 
 <body>
-<a href=<?= url_to("ajout") ?>>Ajouter client</a>
+<a href=<?= url_to("ajout_client") ?>>Ajouter client</a>
 
 <?php
 foreach ($listeClients as $client) {
@@ -12,15 +12,16 @@ foreach ($listeClients as $client) {
     <p>
         <?php
 
-            $client['prenom'];
-            $client['nom'];
-            $client['departement_nom'];
-            '<a href="' . url_to("modif", $client['id']) . '" >Modifier</a>';
-            '<a href="' . url_to("supp", $client['id']) . '" >Supprimer</a>';
+            echo $client['RAISON_SOCIAL'],
+            $client['CONTACT'],
+            $client['NUM_TELEPHONE_CLIENT'],
+            $client['ADRESSE_CLIENT'],
+            '<a href="' . url_to("update_client", $client['ID_CLIENT']) . '" >Modifier</a>',
+            '<a href="' . url_to("suppr_client", $client['ID_CLIENT']) . '" >Supprimer</a>';
 
         ?>
 
-    </p>
+    </p><br>
 <?php
 
 

@@ -18,4 +18,8 @@ class Client extends BaseController
             'listeClients' => $clients
         ]);
     }
+
+    public function ajout(){
+        return view('ajout_client');
+    }
 }

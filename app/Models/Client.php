@@ -13,14 +13,14 @@ class Client extends Model
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
     protected $allowedFields    = [
-        'raison_social',
-        'contact',
-        'email_client',
-        'num_telephone_client',
-        'adresse_client',
-        'code_postal_client',
-        'ville_client',
-        'photo_client'
+        'RAISON_SOCIAL',
+        'CONTACT',
+        'EMAIL_CLIENT',
+        'NUM_TELEPHONE_CLIENT',
+        'ADRESSE_CLIENT',
+        'CODE_POSTAL_CLIENT',
+        'VILLE_CLIENT',
+        'PHOTO_CLIENT'
     ];
 
     protected bool $allowEmptyInserts = false;
