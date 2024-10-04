@@ -13,9 +13,9 @@ class Utilisateur extends Model
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
     protected $allowedFields    = [
-        'identifiant',
-        'mot_de_passe',
-        'role'
+        'IDENTIFIANT',
+        'MOT_DE_PASSE',
+        'ROLE'
     ];
 
     protected bool $allowEmptyInserts = false;

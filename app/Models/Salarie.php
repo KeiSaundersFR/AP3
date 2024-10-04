@@ -13,15 +13,15 @@ class Salarie extends Model
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
     protected $allowedFields    = [
-        'nom',
-        'prenom',
-        'civilite',
-        'email_salarie',
-        'num_telephone_salarie',
-        'adresse_salarie',
-        'code_postal_salarie',
-        'ville_salarie',
-        'photo_salarie'
+        'NOM',
+        'PRENOM',
+        'CIVILITE',
+        'EMAIL_SALARIE',
+        'NUM_TELEPHONE_SALARIE',
+        'ADRESSE_SALARIE',
+        'CODE_POSTAL_SALARIE',
+        'VILLE_SALARIE',
+        'PHOTO_SALARIE'
     ];
 
     protected bool $allowEmptyInserts = false;
