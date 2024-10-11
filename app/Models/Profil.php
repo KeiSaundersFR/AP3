@@ -13,7 +13,7 @@ class Profil extends Model
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
     protected $allowedFields    = [
-        'intitule_profil'
+        'INTITULE_PROFIL'
     ];
 
     protected bool $allowEmptyInserts = false;

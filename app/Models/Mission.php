@@ -13,10 +13,10 @@ class Mission extends Model
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
     protected $allowedFields    = [
-        'intitule_mission',
-        'description',
-        'date_debut',
-        'date_fin'
+        'INTITULE_MISSION',
+        'DESCRIPTION',
+        'DATE_DEBUT',
+        'DATE_FIN'
     ];
 
     protected bool $allowEmptyInserts = false;

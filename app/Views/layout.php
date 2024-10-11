@@ -17,7 +17,7 @@
                 <li>Sage</li>
                 <li>Marquez</li>
                 <li>Perot</li>
-                <li>Xiong</li>
+                <li><a href="<?= url_to('page_salarie') ?>">liste salarie</a></li>
             </ul>
         </nav>
         

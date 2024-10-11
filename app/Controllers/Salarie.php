@@ -4,8 +4,38 @@ namespace App\Controllers;
 
 class Salarie extends BaseController
 {
-    public function index(): string
+    private $salarieModel;
+
+    public function __construct()
     {
-        return view('welcome_message');
+        $this->salarieModel = model('Salarie');
     }
+
+    public function list(): string
+    {
+        $salaries = $this->salarieModel->findAll();
+        return view('salarie/liste_salaries.php', [
+            'listeSalaries' => $salaries
+        ]);
+    }
+
+    public function ajout(): string
+    {
+        return view('salarie/ajout_salaries.php');
+    }
+
+    public function modif($salarieId): string
+    {
+        $salarie_update = $this->salarieModel->find($salarieId);
+
+        return view('salarie/update_salarie', [
+            'salarie' => $salarie_update
+        ]);
+    }
+
+    // public function delete($etudiantId): //RedirectResponse
+    // {
+    //     //return redirect('salarie/list_salarie');
+    //     // return ('Suppr étudiant id=' . $etudiantId);
+    // }
 }
