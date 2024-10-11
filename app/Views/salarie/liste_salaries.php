@@ -1,11 +1,13 @@
 <?= $this->extend('layout') ?>
 <?= $this->section('contenu') ?>
 
+<link rel="stylesheet" type="text/css" href="css/main.css" />
+
 <a class=button href="<?= url_to('ajout_salarie') ?>">Ajouter un salarié </a>
 
 <?php
 
-foreach ($listSalarie as $salarie) {
+foreach ($listeSalaries as $salarie) {
 ?>
     <p>
         <?php
@@ -19,8 +21,11 @@ foreach ($listSalarie as $salarie) {
         $salarie['CODE_POSTAL_SALARIE'],
         $salarie['VILLE_SALARIE'],
         $salarie['PHOTO_SALARIE'],
-        '<a class = button href="' . url_to('modif_salarie', $salarie['ID_SALARIE']) . '">Modifier</button>',
-        '<a class = button href="' . url_to('suppr_salarie', $salarie['ID_SALARIE']) . '">Supprimer</button>';
+        // '<a href="' . url_to("modif_salarie", $salarie['ID_SALARIE']) . '" >Modifier</a>',
+        // '<a href="' . url_to("suppr_salarie", $salarie['ID_SALARIE']) . '" >Supprimer</a>';
+        '<a href="' . url_to("update_salarie", $salarie['ID_SALARIE']) . '" >Modifier</a>',
+        '<a href="' . url_to("suppr_salarie", $salarie['ID_SALARIE']) . '" >Supprimer</a>';
+
 
         ?>
     </p>
