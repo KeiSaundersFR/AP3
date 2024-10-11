@@ -33,7 +33,7 @@ $routes->get('list_client', 'Client::list', ['as' => 'page_client']);
 $routes->get('create_client', 'Client::ajout', ['as' => 'ajout_client']);
 $routes->post('create_client', 'Client::create', ['as' => 'create_client']);
 
-$routes->get('update_client-(:num)', 'Client::modif/$1', ['as' => 'update_client']);
+$routes->get('update_client-(:num)', 'Client::modif/$1', ['as' => 'modif_client']);
 $routes->post('update_client', 'Client::update', ['as' => 'update_client']);
 
 $routes->post('suppr_client', 'Client::suppr', ['as' => 'suppr_client']);

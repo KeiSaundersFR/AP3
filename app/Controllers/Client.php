@@ -19,26 +19,18 @@ class Client extends BaseController
         ]);
     }
 
-    public function ajout(){
+    public function ajout()
+    {
         return view('client/ajout_client');
     }
-    
-    public function create(){
-        $data = [
-            'RAISON_SOCIAL' => $this->request->GetPost("raison social"),
-            'CONTACT' => $this->request->GetPost("contact"),
-            'EMAIL_CLIENT' => $this->request->GetPost("email_client"),
-            'NUM_TELEPHONE_CLIENT' => $this->request->GetPost("telephone"),
-            'ADRESSE_CLIENT' => $this->request->GetPost("adresse"),
-            'CODE_POSTAL_CLIENT' => $this->request->GetPost("code_postal"),
-            'VILLE_CLIENT' => $this->request->GetPost("ville"),
-            'PHOTO_CLIENT' => $this->request->GetPost("profil"),
-        ];
 
-        $this->clientModel->save($data);
+    public function create()
+    {
+        $clientData = $this->request->getPost();
+        $this->clientModel->save($clientData);
         return redirect('page_client');
     }
-    
+
     public function modif($clientId): string
     {
         $client = $this->clientModel->find($clientId);
@@ -50,19 +42,9 @@ class Client extends BaseController
 
     public function update() // à finir
     {
-        $data = [
-            'id' => $this->request->GetPost("id"),
-            'RAISON_SOCIAL' => $this->request->GetPost("raison social"),
-            'CONTACT' => $this->request->GetPost("contact"),
-            'EMAIL_CLIENT' => $this->request->GetPost("email_client"),
-            'NUM_TELEPHONE_CLIENT' => $this->request->GetPost("telephone"),
-            'ADRESSE_CLIENT' => $this->request->GetPost("adresse"),
-            'CODE_POSTAL_CLIENT' => $this->request->GetPost("code_postal"),
-            'VILLE_CLIENT' => $this->request->GetPost("ville"),
-            'PHOTO_CLIENT' => $this->request->GetPost("profil"),
-        ];
 
-        $this->clientModel->save($data);
+        $clientData = $this->request->getPost();
+        $this->clientModel->save($clientData);
         return redirect('page_client');
     }
 }

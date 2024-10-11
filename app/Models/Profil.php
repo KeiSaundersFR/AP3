@@ -7,7 +7,7 @@ use CodeIgniter\Model;
 class Profil extends Model
 {
     protected $table            = 'profil';
-    protected $primaryKey       = 'id';
+    protected $primaryKey       = 'ID_PROFIL';
     protected $useAutoIncrement = true;
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
