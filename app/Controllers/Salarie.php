@@ -21,7 +21,14 @@ class Salarie extends BaseController
 
     public function ajout(): string
     {
-        return view('salarie/ajout_salaries.php');
+        return view('salarie/ajout_salarie.php');
+    }
+
+    public function create(){
+
+        $salarieData= $this->request->getPost();
+        $this->salarieModel->save($salarieData);
+        return redirect('list_salarie');
     }
 
     public function modif($salarieId): string
@@ -31,6 +38,13 @@ class Salarie extends BaseController
         return view('salarie/update_salarie', [
             'salarie' => $salarie_update
         ]);
+    }
+
+    public function update(){
+
+        $salarieData= $this->request->getPost();
+        $this->salarieModel->save($salarieData);
+        return redirect('list_salarie');
     }
 
     // public function delete($etudiantId): //RedirectResponse
