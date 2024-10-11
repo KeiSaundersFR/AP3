@@ -38,11 +38,14 @@ class Client extends BaseController
         $this->clientModel->save($data);
         return redirect('page_client');
     }
+    
     public function modif($clientId): string
     {
-        $this->clientModel->find($clientId);
+        $client = $this->clientModel->find($clientId);
 
-        return view('client/modif_client');
+        return view('client/modif_client.php', [
+            'client' => $client
+        ]);
     }
 
     public function update() // à finir

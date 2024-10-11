@@ -8,6 +8,8 @@
 <form method="post" action=" <?= url_to('update_client') ?>">
     <fieldset>
         <legend>Modifier client</legend>
+        <label for="id">ID</label>
+        <input id="id" name="id" type="hidden">
         <label for="raison sociale">Raison Social</label>
         <input type="hidden" id="raison sociale" name="raison social" type="text" required /><br>
         <label for="contact (nom prenom)">Contact (nom prenom)</label>

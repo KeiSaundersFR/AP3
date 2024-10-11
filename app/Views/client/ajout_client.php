@@ -6,11 +6,13 @@
 // var_dump($_);
 ?>
 
-<form method="post"> <action=" <?= url_to('create_client') ?>">
+<form method="post" action=" <?= url_to('create_client') ?>">
     <fieldset>
         <legend>Ajout client</legend>
+        <label for="id">ID</label>
+        <input id="id" name="id" type="hidden">
         <label for="raison sociale">Raison Social</label>
-        <input id="raison sociale" name="raison social" type="text" required /><br>
+        <input id="raison sociale" name="raison social" type="" required /><br>
         <label for="contact (nom prenom)">Contact (nom prenom)</label>
         <input id="contact" name="contact" type="text" required/><br>
         <label for="contact email">Email Client</label>
@@ -24,7 +26,7 @@
         <label for="ville">Ville</label>
         <input id="ville" name="ville" type="text" required/><br>
         <label for="avatar">Photo de profil</label>
-        <input type="file" id="photo" name="profil" accept="image/png, image/jpeg" ><br>
+        <input type="file" id="photo" name="profil" accept="image/png, image/jpeg" required><br>
         <input type="submit" value="Ajouter">
         <input type="reset" value="Vider">
     </fieldset>
