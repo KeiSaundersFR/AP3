@@ -1,7 +1,7 @@
 <?= $this->extend('layout') ?>
 <?= $this->section('contenu') ?>
 <html>
-<link rel="stylesheet" type="text/css" href="css/main.css" />
+<!-- <link rel="stylesheet" type="text/css" href="css/main.css" /> -->
 
 <body>
     <a href=<?= url_to("ajout_client") ?>>Ajouter client</a>
@@ -21,8 +21,8 @@
 
             ?>
 
-        </p><br>
-    <?php
+    </p><br>
+<?php
 
 
     }
