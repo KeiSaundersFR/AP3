@@ -7,7 +7,7 @@ use CodeIgniter\Model;
 class Salarie extends Model
 {
     protected $table            = 'salarie';
-    protected $primaryKey       = 'id';
+    protected $primaryKey       = 'ID_SALARIE';
     protected $useAutoIncrement = true;
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;

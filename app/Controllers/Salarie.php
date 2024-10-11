@@ -35,7 +35,7 @@ class Salarie extends BaseController
     {
         $salarie_update = $this->salarieModel->find($salarieId);
 
-        return view('salarie/update_salarie', [
+        return view('salarie/modif_salarie', [
             'salarie' => $salarie_update
         ]);
     }
