@@ -7,7 +7,7 @@ use CodeIgniter\Model;
 class Mission extends Model
 {
     protected $table            = 'mission';
-    protected $primaryKey       = 'id';
+    protected $primaryKey       = 'ID_MISSION';
     protected $useAutoIncrement = true;
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;

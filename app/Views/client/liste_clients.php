@@ -16,7 +16,7 @@
             $client['CONTACT'],
             $client['NUM_TELEPHONE_CLIENT'],
             $client['ADRESSE_CLIENT'],
-            '<a href="' . url_to("update_client", $client['ID_CLIENT']) . '" >Modifier</a>',
+            '<a href="' . url_to("modif_client", $client['ID_CLIENT']) . '" >Modifier</a>',
             '<a href="' . url_to("suppr_client", $client['ID_CLIENT']) . '" >Supprimer</a>';
 
             ?>
