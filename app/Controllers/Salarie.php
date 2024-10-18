@@ -26,9 +26,12 @@ class Salarie extends BaseController
 
     public function create(){
 
-        $salarieData= $this->request->getPost();
+        $salarieData = $this->request->getPost();
+        var_dump($salarieData);
+        die();
+        
         $this->salarieModel->save($salarieData);
-        return redirect('list_salarie');
+        return redirect('page_salarie');
     }
 
     public function modif($salarieId): string
