@@ -18,7 +18,7 @@
             $client['ADRESSE_CLIENT'],
             '<a href="' . url_to("modif_client", $client['ID_CLIENT']) . '" >Modifier</a>';
             ?>
-            <form method="post" action=" <?= url_to('page_client') ?>">
+            <form method="post" action=" <?= url_to('suppr_client') ?>">
                 <input type="submit" value="supprimer">
             </form>
             
