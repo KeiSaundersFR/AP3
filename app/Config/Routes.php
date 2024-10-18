@@ -10,20 +10,20 @@ $routes->get('/', 'Home::index');
 
 // routes pour les pages missions
 $routes->get('list_mission', 'Mission::list', ['as' => 'list_mission']);
-$routes->get('gestion_mission-(num)', 'Mission::mission', ['as' => 'gestion_mission']);
+$routes->get('gestion_mission-(:num)', 'Mission::mission', ['as' => 'gestion_mission']);
 $routes->post('list_mission', 'Mission::list', ['as' => 'list_mission']);
 
 
 $routes->get('create_mission', 'Mission::ajout', ['as' => 'ajout_mission']);
 $routes->post('create_mission', 'Mission::create', ['as' => 'create_mission']);
 
-$routes->get('update_mission-(num)', 'Mission::modif/$1', ['as' => 'modif_mission']);
+$routes->get('update_mission-(:num)', 'Mission::modif/$1', ['as' => 'modif_mission']);
 $routes->post('update_mission', 'Mission::update', ['as' => 'update_mission']);
 
 $routes->post('suppr_mission', 'Mission::suppr', ['as' => 'suppr_mission']);
 
 // routes pour affecter les missions
-$routes->get('affect_mission-(num)', 'Mission::detail/$1', ['as' => 'attribution_mission']);
+$routes->get('affect_mission-(:num)', 'Mission::detail/$1', ['as' => 'attribution_mission']);
 $routes->post('affect_mission', 'Mission::affect', ['as' => 'affect_mission']);
 
 
@@ -47,7 +47,7 @@ $routes->post('create_salarie', 'Salarie::create', ['as' => 'create_salarie']);
 $routes->get('update_salarie-(:num)', 'Salarie::modif/$1', ['as' => 'modif_salarie']);
 $routes->post('update_salarie', 'Salarie::update', ['as' => 'update_salarie']);
 
-$routes->post('suppr_salarie', 'Salarie::suppr', ['as' => 'suppr_salarie']);
+$routes->post('suppr_salarie', 'Salarie::delete', ['as' => 'suppr_salarie']);
 
 // routes V2
 
@@ -64,7 +64,7 @@ $routes->get('list_utilisateur', 'Utilisateur::list', ['as' => 'page_utilisateur
 $routes->get('create_utilisateur', 'Utilisateur::ajout', ['as' => 'create_utilisateur']);
 $routes->post('create_utilisateur', 'Utilisateur::create', ['as' => 'create_utilisateur']);
 
-$routes->get('update_utilisateur-(num)', 'Utilisateur::modif/$1', ['as' => 'update_utilisateur']);
+$routes->get('update_utilisateur-(:num)', 'Utilisateur::modif/$1', ['as' => 'update_utilisateur']);
 $routes->post('update_utilisateur', 'Utilisateur::update', ['as' => 'update_utilisateur']);
 
 $routes->post('suppr_utilisateur', 'Utilisateur::suppr', ['as' => 'suppr_utilisateur']);

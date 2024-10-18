@@ -26,8 +26,6 @@
 
             <h1>Bienvenue à AMSET </h1>
 
-            <h2>The small framework with powerful features</h2>
-
         </div>
 
     </header>

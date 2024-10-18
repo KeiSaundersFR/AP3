@@ -26,9 +26,9 @@ class Salarie extends BaseController
 
     public function create(){
 
-        $salarieData= $this->request->getPost();
+        $salarieData = $this->request->getPost();
         $this->salarieModel->save($salarieData);
-        return redirect('list_salarie');
+        return redirect('page_salarie');
     }
 
     public function modif($salarieId): string
@@ -44,12 +44,13 @@ class Salarie extends BaseController
 
         $salarieData= $this->request->getPost();
         $this->salarieModel->save($salarieData);
-        return redirect('list_salarie');
+        return redirect('page_salarie');
     }
 
-    // public function delete($etudiantId): //RedirectResponse
-    // {
-    //     //return redirect('salarie/list_salarie');
-    //     // return ('Suppr étudiant id=' . $etudiantId);
-    // }
+    public function delete()
+    {
+        $salarieData = $this->request->getPost();
+        $this->salarieModel->delete($salarieData['ID_SALARIE']);
+        return redirect('page_salarie');
+    }
 }
