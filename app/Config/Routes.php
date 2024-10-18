@@ -47,7 +47,7 @@ $routes->post('create_salarie', 'Salarie::create', ['as' => 'create_salarie']);
 $routes->get('update_salarie-(:num)', 'Salarie::modif/$1', ['as' => 'modif_salarie']);
 $routes->post('update_salarie', 'Salarie::update', ['as' => 'update_salarie']);
 
-$routes->post('suppr_salarie', 'Salarie::suppr', ['as' => 'suppr_salarie']);
+$routes->post('suppr_salarie', 'Salarie::delete', ['as' => 'suppr_salarie']);
 
 // routes V2
 

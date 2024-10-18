@@ -24,6 +24,7 @@ foreach ($listeSalaries as $salarie) {
         // '<a href="' . url_to("modif_salarie", $salarie['ID_SALARIE']) . '" >Modifier</a>',
         // '<a href="' . url_to("suppr_salarie", $salarie['ID_SALARIE']) . '" >Supprimer</a>';
         '<a href="' . url_to("modif_salarie", $salarie['ID_SALARIE']) . '" >Modifier</a>',
+        
         '<a href="' . url_to("suppr_salarie", $salarie['ID_SALARIE']) . '" >Supprimer</a>';
 
 

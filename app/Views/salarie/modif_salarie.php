@@ -25,13 +25,13 @@
     </select>
 
     <label for="adresse">Adresse</label>
-    <input id="adresse" name="adresse" type="text" />
+    <input id="adresse" name="adresse" type="text" value = "<?= $salarie['ADRESSE_SALARIE']?>" />
     <label for="ville">Ville</label>
-    <input id="ville" name="ville" type="text" />
+    <input id="ville" name="ville" type="text" value = "<?= $salarie['VILLE_SALARIE']?>" />
     <label for="cp">Code_Postal</label>
-    <input id="cp" name="cp" type="text" />
+    <input id="cp" name="cp" type="text" value = "<?= $salarie['CODE_POSTAL_SALARIE']?>" />
     <label for="profil">Profil</label>
-    <input id="profil" name="profil" type="text" />
+    <input type="file" id="profil" name="profil" accept="image/png, image/jpeg" value = "<?= $salarie['PHOTO_SALARIE']?>"/>
 
     <input type="submit" value="Mettre a jour">
 </form>

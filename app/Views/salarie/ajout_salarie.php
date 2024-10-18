@@ -28,7 +28,7 @@
     <label for="cp">Code_Postal</label>
     <input id="cp" name="cp" type="text" />
     <label for="profil">Profil</label>
-    <input id="profil" name="profil" type="text" />
+    <input type="file" id="profil" name="profil" accept="image/png, image/jpeg" />
 
     <input type="submit" value="Créer">
 </form>
