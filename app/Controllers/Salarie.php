@@ -44,7 +44,7 @@ class Salarie extends BaseController
 
         $salarieData= $this->request->getPost();
         $this->salarieModel->save($salarieData);
-        return redirect('list_salarie');
+        return redirect('page_salarie');
     }
 
     public function delete($salarieId)

@@ -9,9 +9,9 @@
     <label for="prenom">Prénom</label>
     <input id="prenom" name="PRENOM" type="text" />
     <label for="mail">Email</label>
-    <input id="mail" name="MAIL" type="text" />
+    <input id="mail" name="EMAIL_SALARIE" type="text" />
     <label for="telephone">Telephone</label>
-    <input id="tel" name="NUM_TELEPHONE_SALARIE" type="tel"min="10" max="10" />
+    <input id="telephone" name="NUM_TELEPHONE_SALARIE" type="tel"min="10" max="10" />
 
 
     <label for="genre-select">Genre:</label>
@@ -26,9 +26,9 @@
     <label for="ville">Ville</label>
     <input id="ville" name="VILLE_SALARIE" type="text" />
     <label for="cp">Code_Postal</label>
-    <input id="cp" name="cp" type="text" />
+    <input id="cp" name="CODE_POSTAL_SALARIE" type="text" />
     <label for="profil">Profil</label>
-    <input type="file" id="PHOTO_SALARIE" name="profil" accept="image/png, image/jpeg" />
+    <input type="file" id="profil" name="PHOTO_SALARIE" accept="image/png, image/jpeg" />
 
     <input type="submit" value="Créer">
 </form>
