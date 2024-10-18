@@ -47,9 +47,10 @@ class Salarie extends BaseController
         return redirect('page_salarie');
     }
 
-    public function delete($salarieId)
+    public function delete()
     {
-        return redirect('salarie/list_salarie');
-        //return ('Suppr étudiant id=' . $etudiantId);
+        $salarieData = $this->request->getPost();
+        $this->salarieModel->delete($salarieData['ID_SALARIE']);
+        return redirect('page_salarie');
     }
 }
