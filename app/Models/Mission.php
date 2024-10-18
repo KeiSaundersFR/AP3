@@ -44,4 +44,17 @@ class Mission extends Model
     protected $afterFind      = [];
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
+
+    public function findJoinAll()
+    {
+        return $this
+        ->select('mission.ID_MISSION,
+        mission.INTITULE_MISSION,
+        mission.DESCRIPTION,
+        mission.DATE_DEBUT,
+        mission.DATE_FIN,
+        client.RAISON_SOCIAL as RAISON_SOCIAL')
+        ->join('client', 'client.ID_CLIENT = mission.ID_CLIENT')
+        ->findAll();
+    }
 }
