@@ -54,8 +54,12 @@ $routes->post('suppr_salarie', 'Salarie::delete', ['as' => 'suppr_salarie']);
 // routes pour les profils
 $routes->get('list_profil', 'Profil::list', ['as' => 'page_profil']);
 
+$routes->get('create_profil', 'Profil::ajout', ['as' => 'ajout_profil']);
 $routes->post('create_profil', 'Profil::create', ['as' => 'create_profil']);
+
+$routes->get('update_profil-(:num)', 'Profil::modif/$1', ['as' => 'modif_profil']);
 $routes->post('update_profil', 'Profil::update', ['as' => 'update_profil']);
+
 $routes->post('suppr_profil', 'Profil::suppr', ['as' => 'suppr_profil']);
 
 // routes pour les utilisateur de l'aplication

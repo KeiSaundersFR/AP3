@@ -23,12 +23,13 @@ foreach ($listeSalaries as $salarie) {
         $salarie['PHOTO_SALARIE'],
         // '<a href="' . url_to("modif_salarie", $salarie['ID_SALARIE']) . '" >Modifier</a>',
         // '<a href="' . url_to("suppr_salarie", $salarie['ID_SALARIE']) . '" >Supprimer</a>';
-        '<a href="' . url_to("modif_salarie", $salarie['ID_SALARIE']) . '" >Modifier</a>',
-        
-        '<a href="' . url_to("suppr_salarie", $salarie['ID_SALARIE']) . '" >Supprimer</a>';
-
-
+        '<a href="' . url_to("modif_salarie", $salarie['ID_SALARIE']) . '" >Modifier</a>';
         ?>
+
+    <form method="post" action=" <?= url_to('suppr_salarie') ?>">
+        <input id="ID_SALARIE" name="ID_SALARIE" type="hidden" value="<?= $salarie['ID_SALARIE'] ?>">
+        <input type="submit" value="supprimer">
+    </form>
     </p>
 <?php
 }

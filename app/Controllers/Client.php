@@ -48,8 +48,10 @@ class Client extends BaseController
         return redirect('page_client');
     }
 
-    public function suppr_client($clientId){
-        $this->clientModel->delete($clientId);
+    public function suppr()
+    {
+        $clientData = $this->request->getPost();
+        $this->clientModel->delete($clientData['ID_CLIENT']);
 
         return redirect('page_client');
     }
