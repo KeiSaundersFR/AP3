@@ -16,10 +16,12 @@
             $client['CONTACT'],
             $client['NUM_TELEPHONE_CLIENT'],
             $client['ADRESSE_CLIENT'],
-            '<a href="' . url_to("modif_client", $client['ID_CLIENT']) . '" >Modifier</a>',
-            '<a href="' . url_to("suppr_client", $client['ID_CLIENT']) . '" >Supprimer</a>';
-
+            '<a href="' . url_to("modif_client", $client['ID_CLIENT']) . '" >Modifier</a>';
             ?>
+            <form method="post" action=" <?= url_to('page_client') ?>">
+                <input type="submit" value="supprimer">
+            </form>
+            
 
     </p><br>
 <?php
