@@ -13,6 +13,7 @@ class Mission extends Model
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
     protected $allowedFields    = [
+        'ID_CLIENT',
         'INTITULE_MISSION',
         'DESCRIPTION',
         'DATE_DEBUT',
@@ -44,4 +45,18 @@ class Mission extends Model
     protected $afterFind      = [];
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
+
+    public function findJoinAll()
+    {
+        return $this
+        ->select('mission.ID_MISSION,
+        mission.INTITULE_MISSION,
+        mission.DESCRIPTION,
+        mission.DATE_DEBUT,
+        mission.DATE_FIN,
+        client.RAISON_SOCIAL as RAISON_SOCIAL,
+        client.ID_CLIENT')
+        ->join('client', 'client.ID_CLIENT = mission.ID_CLIENT')
+        ->findAll();
+    }
 }
