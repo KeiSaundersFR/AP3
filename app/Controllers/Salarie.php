@@ -53,4 +53,6 @@ class Salarie extends BaseController
         $this->salarieModel->delete($salarieData['ID_SALARIE']);
         return redirect('page_salarie');
     }
+    
+    
 }

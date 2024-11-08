@@ -6,7 +6,7 @@ use CodeIgniter\Router\RouteCollection;
  * @var RouteCollection $routes
  */
 $routes->get('/', 'Home::index');
-
+service('auth')->routes($routes);
 
 // routes pour les pages missions
 $routes->get('list_mission', 'Mission::list', ['as' => 'list_mission']);
