@@ -156,7 +156,8 @@ header .heroe h2 {
 
 section {
     margin: 0 auto;
-    max-width: 1100px;
+    /* justify-content: center; */
+    /* max-width: 1100px; */
     padding: 2.5rem 1.75rem 3.5rem 1.75rem;
 }
 
@@ -212,7 +213,7 @@ section svg {
 }
 
 footer {
-    background-color: rgba(221, 72, 20, .8);
+    background-color: rgba(221, 72, 20, 0.8);
     text-align: center;
 }
 
@@ -260,4 +261,32 @@ footer .copyrights {
         background-color: rgba(221, 72, 20, .7);
         color: rgba(255, 255, 255, .8);
     }
+}
+.container {
+   
+    height: auto; 
+    width: auto;
+    padding: 20px;
+    display: flex;
+    float: left;
+    
+    background: #dd4814cc;
+    margin: 10px;
+}
+
+.product {
+
+    max-width: 200px;
+    margin: 10px;
+    padding: 10px;
+    border: 1px solid #ffffff;
+    text-align: center;
+    background: #ffffff;
+    
+}
+
+.content {
+    display:flex;
+    flex-direction: row;
+    flex-wrap: wrap;
 }

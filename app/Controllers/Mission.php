@@ -25,6 +25,13 @@ class Mission extends BaseController
         ]);
     }
 
+    public function mission($missionId) {
+        $mission = $this->missionModel->find($missionId);
+        return view('mission/gestion_mission',[
+            'mission' => $mission
+        ]);
+    } 
+
     public function ajout()
     {
         $clients = $this->clientModel->findAll();
@@ -35,8 +42,6 @@ class Mission extends BaseController
     public function create()
     {
         $missionData = $this->request->getPost();
-        // var_dump($missionData);
-        // die();
         $this->missionModel->save($missionData);
         return redirect('list_mission');
     }
