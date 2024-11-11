@@ -17,10 +17,32 @@
         <label for="date debut">Date de début</label>
         <input id="date debut" name="DATE_DEBUT" type="date" value="<?= $mission['DATE_DEBUT'] ?>" required /><br>
         <label for="date fin">Date de fin</label>
-        <input id="date debut" name="DATE_FIN" type="date" value="<?= $mission['DATE_FIN'] ?>" required /><br>
+        <input id="date fin" name="DATE_FIN" type="date" value="<?= $mission['DATE_FIN'] ?>" required /><br>
+        <select id="client" name="ID_CLIENT">
+            <option value="<?= $client['ID_CLIENT'] ?>"> <?= $client['RAISON_SOCIAL'] ?></option>
+
+            <?php
+            foreach ($listeClient as $client) {
+                echo '<option value="' . $client['ID_CLIENT'] . ' required>' . $client['RAISON_SOCIAL'] . '</option>';
+            }
+            ?>
+        </select><br>
+        <label for="profil">Profil</label><br>
+        <?php
+        
+        foreach ($profilsMission as $profil) {
+
+            echo '<label>' . $profil['INTITULE_PROFIL'] . '</label>';
+            echo '<input type="hidden" name="ID_PROFIL[]" value="'. $profil['ID_PROFIL'] .'">';
+            echo '<input type="number" name=' . $profil['ID_PROFIL'] . ' value="'. $profil['NOMBRE_SALARIE'] . '" " min="1" required > </br>';
+        }
+        ?>
+
         <input type="submit" value="Modifier">
         <input type="reset" value="Vider">
     </fieldset>
 </form>
-<a href=<?= url_to("list_mission") ?>>Retour</a>
+
+
+<a href=<?= url_to("gestion_mission", $mission['ID_MISSION']) ?>><button>Retour</button></a>
 <?= $this->endSection() ?>

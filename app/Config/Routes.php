@@ -10,7 +10,7 @@ $routes->get('/', 'Home::index');
 
 // routes pour les pages missions
 $routes->get('list_mission', 'Mission::list', ['as' => 'list_mission']);
-$routes->get('gestion_mission-(:num)', 'Mission::mission', ['as' => 'gestion_mission']);
+$routes->get('gestion_mission-(:num)', 'Mission::mission/$1', ['as' => 'gestion_mission']);
 $routes->post('list_mission', 'Mission::list', ['as' => 'list_mission']);
 
 
@@ -23,7 +23,7 @@ $routes->post('update_mission', 'Mission::update', ['as' => 'update_mission']);
 $routes->post('suppr_mission', 'Mission::suppr', ['as' => 'suppr_mission']);
 
 // routes pour affecter les missions
-$routes->get('affect_mission-(:num)', 'Mission::detail/$1', ['as' => 'attribution_mission']);
+$routes->get('affect_mission-(:num)', 'Mission::attribution/$1', ['as' => 'attribution_mission']);
 $routes->post('affect_mission', 'Mission::affect', ['as' => 'affect_mission']);
 
 

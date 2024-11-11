@@ -49,4 +49,14 @@ class Salarie extends Model
     protected $afterFind      = [];
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
+
+    public function addMission($idSalarie, $isMission)
+    {
+        $db      = \Config\Database::connect();
+        $builder = $db->table('profil_mission');
+        $builder->insert([
+            'ID_SALARIE' => $idSalarie,
+            'ID_MISSION' => $isMission
+        ]);
+    }
 }

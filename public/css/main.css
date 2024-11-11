@@ -28,14 +28,14 @@ header {
     padding: .4rem 2rem;
 }
 
-a {
+/* a {
     padding: 1px 6px;
     border: 1px outset buttonborder;
     border-radius: 3px;
     color: buttontext;
     background-color: buttonface;
     text-decoration: none;
-}
+} */
 
 table {
     border-collapse: collapse;
@@ -262,14 +262,15 @@ footer .copyrights {
         color: rgba(255, 255, 255, .8);
     }
 }
+
 .container {
-   
-    height: auto; 
+
+    height: auto;
     width: auto;
     padding: 20px;
     display: flex;
     float: left;
-    
+
     background: #dd4814cc;
     margin: 10px;
 }
@@ -282,11 +283,78 @@ footer .copyrights {
     border: 1px solid #ffffff;
     text-align: center;
     background: #ffffff;
-    
+    min-height: 500px;
+
 }
 
 .content {
-    display:flex;
+    display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+}
+
+
+/* contenue CSS mission */
+
+/* General styling */
+/* body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f8f8;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+} */
+
+/* Main container styling */
+.containerMission {
+    border: 2px solid #000;
+    padding: 20px;
+    width: 600px;
+    background-color: #fff;
+    justify-self: center;
+}
+
+/* Header styling */
+/* .header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+} */
+
+.header-itemMissionMission {
+    font-weight: bold;
+}
+
+/* Description section */
+.descriptionMission {
+    margin-top: 20px;
+    padding: 10px;
+    border-top: 1px solid #000;
+    border-bottom: 1px solid #000;
+}
+
+.descriptionMission p {
+    text-align: justify;
+}
+
+/* Buttons styling */
+.buttonsMission {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 14px;
+    font-weight: bold;
+    border: 1px solid #000;
+    background-color: #e0e0e0;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #d0d0d0;
 }
