@@ -28,7 +28,7 @@ class Salarie extends BaseController
     {
 
         $user = auth()->user();
-        if (!$user->inGroup('admin') && !$user->inGroup('commercial')) {
+        if (!$user->inGroup('admin') && !$user->inGroup('ressourcehumaine')) {
             // Redirige vers une page d'erreur personnalisée (par exemple page 403)
             return redirect()->route('list_mission')->with('message', 'Accès non autorisé. Utilisez un compte ayant les accès nécessaires.');
         } else {
@@ -42,7 +42,7 @@ class Salarie extends BaseController
     {
 
         $user = auth()->user();
-        if (!$user->inGroup('admin') && !$user->inGroup('commercial')) {
+        if (!$user->inGroup('admin') && !$user->inGroup('ressourcehumaine')) {
             // Redirige vers une page d'erreur personnalisée (par exemple page 403)
             return redirect()->route('list_mission')->with('message', 'Accès non autorisé. Utilisez un compte ayant les accès nécessaires.');
         } else {
@@ -57,7 +57,7 @@ class Salarie extends BaseController
     public function update()
     {
         $user = auth()->user();
-        if (!$user->inGroup('admin') && !$user->inGroup('commercial')) {
+        if (!$user->inGroup('admin') && !$user->inGroup('ressourcehumaine')) {
             // Redirige vers une page d'erreur personnalisée (par exemple page 403)
             return redirect()->route('list_mission')->with('message', 'Accès non autorisé. Utilisez un compte ayant les accès nécessaires.');
         } else {
@@ -70,7 +70,7 @@ class Salarie extends BaseController
     public function delete()
     {
         $user = auth()->user();
-        if (!$user->inGroup('admin') && !$user->inGroup('commercial')) {
+        if (!$user->inGroup('admin') && !$user->inGroup('ressourcehumaine')) {
             // Redirige vers une page d'erreur personnalisée (par exemple page 403)
             return redirect()->route('list_mission')->with('message', 'Accès non autorisé. Utilisez un compte ayant les accès nécessaires.');
         } else {
