@@ -40,7 +40,7 @@ class Client extends BaseController
         ]);
     }
 
-    public function update() // à finir
+    public function update() 
     {
 
         $clientData = $this->request->getPost();

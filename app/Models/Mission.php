@@ -44,4 +44,17 @@ class Mission extends Model
     protected $afterFind      = [];
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
+
+    public function updateProfil (){
+
+    }
+
+    public function getProfil(){
+
+    }
+
+    public function deleteProfilsMission($idMission){
+    
+
+    }
 }
