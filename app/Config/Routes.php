@@ -5,11 +5,11 @@ use CodeIgniter\Router\RouteCollection;
 /**
  * @var RouteCollection $routes
  */
-$routes->get('/', 'Home::index');
+//$routes->get('/', 'Home::index');
 service('auth')->routes($routes);
 
 // routes pour les pages missions
-$routes->get('list_mission', 'Mission::list', ['as' => 'list_mission']);
+$routes->get('/', 'Mission::list', ['as' => 'list_mission']);
 $routes->get('gestion_mission-(:num)', 'Mission::mission', ['as' => 'gestion_mission']);
 $routes->post('list_mission', 'Mission::list', ['as' => 'list_mission']);
 
@@ -72,3 +72,7 @@ $routes->get('update_utilisateur-(:num)', 'Utilisateur::modif/$1', ['as' => 'upd
 $routes->post('update_utilisateur', 'Utilisateur::update', ['as' => 'update_utilisateur']);
 
 $routes->post('suppr_utilisateur', 'Utilisateur::suppr', ['as' => 'suppr_utilisateur']);
+
+// routes page error
+$routes->get('error_message', 'Error::message', ['as'=> 'page_erreur']);
+$routes->post('error_message', 'Error::error', ['as'=> 'error_conexion']);

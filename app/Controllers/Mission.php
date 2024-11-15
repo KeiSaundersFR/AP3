@@ -25,46 +25,81 @@ class Mission extends BaseController
         ]);
     }
 
-    public function mission($missionId) {
+    public function mission($missionId)
+    {
         $mission = $this->missionModel->find($missionId);
-        return view('mission/gestion_mission',[
+        return view('mission/gestion_mission', [
             'mission' => $mission
         ]);
-    } 
+    }
 
     public function ajout()
     {
-        $clients = $this->clientModel->findAll();
-        return view('mission/ajout_mission', ['listeClient' => $clients]
-    );
+
+        $user = auth()->user();
+        if (!$user->inGroup('admin') && !$user->inGroup('commercial')) {
+            // Redirige vers une page d'erreur personnalisée (par exemple page 403)
+            return redirect()->route('list_mission')->with('message', 'Accès non autorisé. Utilisez un compte ayant les accès nécessaires.');
+        } else {
+            $clients = $this->clientModel->findAll();
+            return view(
+                'mission/ajout_mission',
+                ['listeClient' => $clients]
+            );
+        }
     }
 
     public function create()
     {
-        $missionData = $this->request->getPost();
-        $this->missionModel->save($missionData);
-        return redirect('list_mission');
+        $user = auth()->user();
+        if (!$user->inGroup('admin') && !$user->inGroup('commercial')) {
+            // Redirige vers une page d'erreur personnalisée (par exemple page 403)
+            return redirect()->route('list_mission')->with('message', 'Accès non autorisé. Utilisez un compte ayant les accès nécessaires.');
+        } else {
+            $missionData = $this->request->getPost();
+            $this->missionModel->save($missionData);
+            return redirect('list_mission');
+        }
     }
 
     public function modif($missionId): string
     {
-        $mission = $this->missionModel->find($missionId);
-        return view('mission/modif_mission', [
-            'mission' => $mission
-        ]);
+
+        $user = auth()->user();
+        if (!$user->inGroup('admin') && !$user->inGroup('commercial')) {
+            // Redirige vers une page d'erreur personnalisée (par exemple page 403)
+            return redirect()->route('list_mission')->with('message', 'Accès non autorisé. Utilisez un compte ayant les accès nécessaires.');
+        } else {
+            $mission = $this->missionModel->find($missionId);
+            return view('mission/modif_mission', [
+                'mission' => $mission
+            ]);
+        }
     }
 
     public function update()
     {
-        $missionData = $this->request->getPost();
-        $this->missionModel->save($missionData);
-        return redirect('list_mission');
+        $user = auth()->user();
+        if (!$user->inGroup('admin') && !$user->inGroup('commercial')) {
+            // Redirige vers une page d'erreur personnalisée (par exemple page 403)
+            return redirect()->route('list_mission')->with('message', 'Accès non autorisé. Utilisez un compte ayant les accès nécessaires.');
+        } else {
+            $missionData = $this->request->getPost();
+            $this->missionModel->save($missionData);
+            return redirect('list_mission');
+        }
     }
 
     public function suppr()
     {
-        $missionData = $this->request->getPost();
-        $this->missionModel->delete($missionData['ID_MISSION']);
-        return redirect('list_mission');
+        $user = auth()->user();
+        if (!$user->inGroup('admin') && !$user->inGroup('commercial')) {
+            // Redirige vers une page d'erreur personnalisée (par exemple page 403)
+            return redirect()->route('list_mission')->with('message', 'Accès non autorisé. Utilisez un compte ayant les accès nécessaires.');
+        } else {
+            $missionData = $this->request->getPost();
+            $this->missionModel->delete($missionData['ID_MISSION']);
+            return redirect('list_mission');
+        }
     }
 }
