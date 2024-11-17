@@ -63,9 +63,9 @@ class Mission extends Model
     public function addProfil($idMission, $idProfil, $nbr)
     {
         // var_dump($idProfil);
-        var_dump($idProfil['ID_PROFIL']);
+        // var_dump($idProfil['ID_PROFIL']);
         // die();
-        if ($idProfil['ID_PROFIL'] != null) {
+        if ($idProfil != null) {
             $db      = \Config\Database::connect();
             $builder = $db->table('profil_mission');
             $builder->insert([
