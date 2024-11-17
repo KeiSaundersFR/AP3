@@ -62,13 +62,18 @@ class Mission extends Model
 
     public function addProfil($idMission, $idProfil, $nbr)
     {
-        $db      = \Config\Database::connect();
-        $builder = $db->table('profil_mission');
-        $builder->insert([
-            'ID_MISSION' => $idMission,
-            'ID_PROFIL' => $idProfil,
-            'NOMBRE_SALARIE' => $nbr
-        ]);
+        // var_dump($idProfil);
+        var_dump($idProfil['ID_PROFIL']);
+        // die();
+        if ($idProfil['ID_PROFIL'] != null) {
+            $db      = \Config\Database::connect();
+            $builder = $db->table('profil_mission');
+            $builder->insert([
+                'ID_MISSION' => $idMission,
+                'ID_PROFIL' => $idProfil,
+                'NOMBRE_SALARIE' => $nbr
+            ]);
+        }
     }
     public function updateProfil($idMission, $idProfil, $nbr)
     {
@@ -84,9 +89,26 @@ class Mission extends Model
     public function getProfil($idMission)
     {
         $db      = \Config\Database::connect();
-        $builder = $db->table('profil_mission'); 
+        $builder = $db->table('profil_mission');
         $builder->join('profil', 'profil.ID_PROFIL = profil_mission.ID_PROFIL');
         $query = $builder->getWhere(['ID_MISSION' => $idMission]);
         return $query->getResultArray();
+    }
+
+    public function deleteProfilsMission($idMission)
+    {
+        $db      = \Config\Database::connect();
+        $builder = $db->table('profil_mission');
+        $builder->Where('ID_MISSION', $idMission);
+        $builder->delete();
+    }
+
+    public function deleteProfilMission($idMission, $idProfil)
+    {
+        $db      = \Config\Database::connect();
+        $builder = $db->table('profil_mission');
+        $builder->Where('ID_MISSION', $idMission);
+        $builder->Where('ID_PROFIL', $idProfil);
+        $builder->delete();
     }
 }

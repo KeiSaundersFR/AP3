@@ -6,9 +6,12 @@
     <div class="containerMission">
         <div class="headerMission">
             <div class="header-itemMission">
-                <p>Intitulé de la mission : <?= $mission['INTITULE_MISSION'] ?></p>
-                <p>Client concerné: <?= $client['RAISON_SOCIAL'] ?></p>
-                <p>Profil(s):
+                <h4> Intitulé de la mission : </h4>
+                <p><?= $mission['INTITULE_MISSION'] ?></p>
+                <h4>Client concerné:</h4>
+                <p><?= $client['RAISON_SOCIAL'] ?></p>
+                <h4>Profil(s):</h4>
+                <p>
                     <?php
                     foreach ($profilsMission as $profil) {
                         echo $profil['INTITULE_PROFIL'] . " x". $profil['NOMBRE_SALARIE'] ."/ ";
@@ -22,7 +25,7 @@
             </div>
         </div>
         <div class="descriptionMission">
-            <p>Description</p>
+            <h4>Description</h4>
             <p><?= $mission['DESCRIPTION'] ?></p>
         </div>
         <div class="buttonsMission">

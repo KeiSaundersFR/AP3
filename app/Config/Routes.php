@@ -47,7 +47,7 @@ $routes->post('create_salarie', 'Salarie::create', ['as' => 'create_salarie']);
 $routes->get('update_salarie-(:num)', 'Salarie::modif/$1', ['as' => 'modif_salarie']);
 $routes->post('update_salarie', 'Salarie::update', ['as' => 'update_salarie']);
 
-$routes->post('suppr_salarie', 'Salarie::delete', ['as' => 'suppr_salarie']);
+$routes->post('suppr_salarie', 'Salarie::suppr', ['as' => 'suppr_salarie']);
 
 // routes V2
 
@@ -72,3 +72,11 @@ $routes->get('update_utilisateur-(:num)', 'Utilisateur::modif/$1', ['as' => 'upd
 $routes->post('update_utilisateur', 'Utilisateur::update', ['as' => 'update_utilisateur']);
 
 $routes->post('suppr_utilisateur', 'Utilisateur::suppr', ['as' => 'suppr_utilisateur']);
+
+// routes pour les modification mission
+$routes->post('ajout_profil_mission', 'Mission::ajoutProfil', ['as' => 'ajout_profil_mission']);
+$routes->post('suppr_profil_mission', 'Mission::supprProfil', ['as' => 'suppr_profil_mission']);
+
+// routes pour les modification salarie
+$routes->post('ajout_profil_salarie', 'Salarie::ajoutProfil', ['as' => 'ajout_profil_salarie']);
+$routes->post('suppr_profil_salarie', 'Salarie::supprProfil', ['as' => 'suppr_profil_salarie']);

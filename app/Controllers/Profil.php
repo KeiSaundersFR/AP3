@@ -9,6 +9,7 @@ class Profil extends BaseController
     public function __construct()
     {
         $this->profilModel = model('Profil');
+
     }
 
     public function list(): string
@@ -21,6 +22,7 @@ class Profil extends BaseController
     
     public function ajout()
     {
+
         return view('profil/ajout_profil');
     }
     

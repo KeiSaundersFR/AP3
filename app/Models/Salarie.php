@@ -50,6 +50,23 @@ class Salarie extends Model
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
 
+    public function findJoinAll()
+    {
+        // return $this
+        //     ->select('salarie.NOM,
+        //     salarie.PRENOM,
+        //     salarie.CIVILITE,
+        //     salarie.EMAIL_SALARIE,
+        //     salarie.NUM_TEL_SALARIE,
+        //     salarie.ADRESSE_SALARIE,
+        //     salarie.CODE_POSTAL_SALARIE,
+        //     salarie.VAILLE_SALARIE,
+        //     salarie.PHOTO_SALARIE')
+        //     ->join('')
+    }
+
+
+
     public function addMission($idSalarie, $isMission)
     {
         $db      = \Config\Database::connect();
@@ -58,5 +75,45 @@ class Salarie extends Model
             'ID_SALARIE' => $idSalarie,
             'ID_MISSION' => $isMission
         ]);
+    }
+
+    public function addProfil($idSalarie, $idProfil)
+    {
+        // var_dump($idProfil);
+        // die();
+        if ($idProfil != null) {
+            $db      = \Config\Database::connect();
+            $builder = $db->table('salarie_profil');
+            $builder->insert([
+                'ID_SALARIE' => $idSalarie,
+                'ID_PROFIL' => $idProfil
+            ]);
+        }
+    }
+
+    public function getProfil($idSalarie)
+    {
+        $db      = \Config\Database::connect();
+        $builder = $db->table('salarie_profil');
+        $builder->join('profil', 'profil.ID_PROFIL = salarie_profil.ID_PROFIL');
+        $query = $builder->getWhere(['ID_SALARIE' => $idSalarie]);
+        return $query->getResultArray();
+    }
+
+    public function deleteProfilsSalarie($idSalarie)
+    {
+        $db      = \Config\Database::connect();
+        $builder = $db->table('salarie_profil');
+        $builder->Where('ID_SALARIE', $idSalarie);
+        $builder->delete();
+    }
+
+    public function deleteProfilSalarie($idSalarie, $idProfil)
+    {
+        $db      = \Config\Database::connect();
+        $builder = $db->table('salarie_profil');
+        $builder->Where('ID_SALARIE', $idSalarie);
+        $builder->Where('ID_PROFIL', $idProfil);
+        $builder->delete();
     }
 }

@@ -14,10 +14,11 @@
 
         <nav class="menu">
             <ul>
-                <li>Sage</li>
-                <li>Marquez</li>
-                <li>Perot</li>
-                <li><a href="<?= url_to('page_salarie') ?>">liste salarie</a></li>
+                
+                <li><a href="<?= url_to('list_mission') ?>">liste mission</a></li>
+                <li><a href="<?= url_to('page_salarie') ?>">liste salarié</a></li>
+                <li><a href="<?= url_to('page_client') ?>">liste client</a></li>
+                <li><a href="<?= url_to('page_profil') ?>">liste profil</a></li>
             </ul>
         </nav>
         
