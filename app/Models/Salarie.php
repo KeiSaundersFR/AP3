@@ -80,6 +80,7 @@ class Salarie extends Model
     public function addProfil($idSalarie, $idProfil)
     {
         // var_dump($idProfil);
+        // var_dump($idSalarie);
         // die();
         if ($idProfil != null) {
             $db      = \Config\Database::connect();
