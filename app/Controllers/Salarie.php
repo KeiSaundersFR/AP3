@@ -28,7 +28,7 @@ class Salarie extends BaseController
         // var_dump($profilsSalarie);
         return view('salarie/liste_salaries.php', [
             'listeSalaries' => $listSalaries,
-        'profilsSalarie' => $profilsSalarie,
+            'profilsSalarie' => $profilsSalarie,
         ]);
     }
 
@@ -54,15 +54,15 @@ class Salarie extends BaseController
         else {
             $salarieData = $this->request->getPost();
             $this->salarieModel->save($salarieData);
-    
+
             $idSalarie = $this->salarieModel->getInsertID();
-    
+
             $listProfil = $this->request->getPost('profils[]');
-    
+
             foreach ($listProfil as $idProfil) {
                 $this->salarieModel->addProfil($idSalarie, $idProfil);
             }
-    
+
             // var_dump($salarieData);
             // var_dump($idSalarie);
             // var_dump($listProfil);
@@ -82,17 +82,18 @@ class Salarie extends BaseController
             $idSalarie = $salarie['ID_SALARIE'];
             $profilsSalarie = $this->salarieModel->getProfil($salarieId);
             $listNonProfilSalarie = $this->profilModel->getProfilsNotSalarie($idSalarie);
-        // var_dump($salarie);
-        // var_dump($idSalarie);
+            // var_dump($salarie);
+            // var_dump($idSalarie);
 
-        // var_dump($listNonProfilSalarie);
-        // die();
+            // var_dump($listNonProfilSalarie);
+            // die();
 
             return view('salarie/modif_salarie', [
                 'salarie' => $salarie,
                 'profilsSalarie' => $profilsSalarie,
                 'listNonProfilSalarie' => $listNonProfilSalarie
             ]);
+        }
     }
 
     public function update()
@@ -101,8 +102,7 @@ class Salarie extends BaseController
         if (!$user->inGroup('admin') && !$user->inGroup('ressourcehumaine')) {
             // Redirige vers une page d'erreur personnalisée (par exemple page 403)
             return redirect()->route('list_mission')->with('message', 'Accès non autorisé. Utilisez un compte ayant les accès nécessaires.');
-        }
-        else {
+        } else {
             $salarieData = $this->request->getPost();
 
             // var_dump($salarieData);
@@ -119,8 +119,7 @@ class Salarie extends BaseController
         if (!$user->inGroup('admin') && !$user->inGroup('ressourcehumaine')) {
             // Redirige vers une page d'erreur personnalisée (par exemple page 403)
             return redirect()->route('list_mission')->with('message', 'Accès non autorisé. Utilisez un compte ayant les accès nécessaires.');
-        }
-        else {
+        } else {
             $salarieData = $this->request->getPost(['ID_SALARIE']);
             $this->salarieModel->deleteProfilsSalarie($salarieData);
             $this->salarieModel->delete($salarieData);
