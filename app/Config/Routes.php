@@ -9,7 +9,7 @@ use CodeIgniter\Router\RouteCollection;
 service('auth')->routes($routes);
 
 // routes pour les pages missions
-$routes->get('list_mission', 'Mission::list', ['as' => 'list_mission']);
+$routes->get('/', 'Mission::list', ['as' => 'list_mission']);
 $routes->get('gestion_mission-(:num)', 'Mission::mission/$1', ['as' => 'gestion_mission']);
 $routes->post('list_mission', 'Mission::list', ['as' => 'list_mission']);
 

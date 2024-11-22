@@ -34,7 +34,7 @@ class Filters extends BaseConfig
      */
     public array $globals = [
         'before' => [
-            // 'honeypot',
+            'session' => ['except' => ['login*', 'register', 'auth/a/*', 'logout']],
             // 'csrf',
             // 'invalidchars',
         ],

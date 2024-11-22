@@ -19,7 +19,7 @@
                     <p><?= $mission['DATE_DEBUT'], " ", $mission['DATE_FIN'] ?></p>
 
                     <?php
-                    
+
                     // echo $mission['INTITULE_MISSION'],
                     // $mission['DESCRIPTION'],
                     // $mission['RAISON_SOCIAL'],
