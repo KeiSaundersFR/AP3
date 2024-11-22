@@ -73,7 +73,6 @@ $routes->post('update_utilisateur', 'Utilisateur::update', ['as' => 'update_util
 
 $routes->post('suppr_utilisateur', 'Utilisateur::suppr', ['as' => 'suppr_utilisateur']);
 
-<<<<<<< HEAD
 // routes pour les modification mission
 $routes->post('ajout_profil_mission', 'Mission::ajoutProfil', ['as' => 'ajout_profil_mission']);
 $routes->post('suppr_profil_mission', 'Mission::supprProfil', ['as' => 'suppr_profil_mission']);
@@ -81,8 +80,6 @@ $routes->post('suppr_profil_mission', 'Mission::supprProfil', ['as' => 'suppr_pr
 // routes pour les modification salarie
 $routes->post('ajout_profil_salarie', 'Salarie::ajoutProfil', ['as' => 'ajout_profil_salarie']);
 $routes->post('suppr_profil_salarie', 'Salarie::supprProfil', ['as' => 'suppr_profil_salarie']);
-=======
 // routes page error
 $routes->get('error_message', 'Error::message', ['as'=> 'page_erreur']);
 $routes->post('error_message', 'Error::error', ['as'=> 'error_conexion']);
->>>>>>> bcd97a22395b8ed21323f56490789642f9b430b7
