@@ -13,7 +13,6 @@ class Mission extends Model
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
     protected $allowedFields    = [
-        'ID_CLIENT',
         'INTITULE_MISSION',
         'DESCRIPTION',
         'DATE_DEBUT',

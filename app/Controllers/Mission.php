@@ -2,8 +2,6 @@
 
 namespace App\Controllers;
 
-use App\Models\Client;
-
 class Mission extends BaseController
 {
     private $missionModel;
@@ -22,7 +20,7 @@ class Mission extends BaseController
 
     public function list(): string
     {
-        $missions = $this->missionModel->findJoinAll();
+        $missions = $this->missionModel-> findAll();
         return view('mission/liste_missions.php', [
             'listeMissions' => $missions
         ]);

@@ -12,7 +12,9 @@
         <p>
             <?php
 
-            echo $profil['INTITULE_PROFIL']
+            echo $profil['INTITULE_PROFIL'],
+            "<br/>",
+            '<a href="' . url_to("modif_profil", $profil['ID_PROFIL']) . '" >Modifier</a>';
             ?>
             <form method="post" action=" <?= url_to('suppr_profil') ?>">
                 <input id="ID_PROFIL" name="ID_PROFIL" type="hidden" value="<?= $profil['ID_PROFIL']?>">

@@ -43,8 +43,7 @@ class Salarie extends BaseController
         );
     }
 
-    public function create()
-    {
+    public function create(){
 
         $user = auth()->user();
         if (!$user->inGroup('admin') && !$user->inGroup('ressourcehumaine')) {
