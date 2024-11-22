@@ -21,38 +21,68 @@ class Client extends BaseController
 
     public function ajout()
     {
-        return view('client/ajout_client');
+        $user = auth()->user();
+        if (!$user->inGroup('admin') && !$user->inGroup('commercial')) {
+            // Redirige vers une page d'erreur personnalisée (par exemple page 403)
+            return redirect()->route('list_mission')->with('message', 'Accès non autorisé. Utilisez un compte ayant les accès nécessaires.');
+        } else
+            return view('client/ajout_client');
     }
 
     public function create()
     {
-        $clientData = $this->request->getPost();
-        $this->clientModel->save($clientData);
-        return redirect('page_client');
+        $user = auth()->user();
+        if (!$user->inGroup('admin') && !$user->inGroup('commercial')) {
+            // Redirige vers une page d'erreur personnalisée (par exemple page 403)
+            return redirect()->route('list_mission')->with('message', 'Accès non autorisé. Utilisez un compte ayant les accès nécessaires.');
+        } else {
+            $clientData = $this->request->getPost();
+            $this->clientModel->save($clientData);
+            return redirect('page_client');
+        }
     }
 
     public function modif($clientId): string
     {
-        $client = $this->clientModel->find($clientId);
+        $user = auth()->user();
+        if (!$user->inGroup('admin') && !$user->inGroup('commercial')) {
+            // Redirige vers une page d'erreur personnalisée (par exemple page 403)
+            return redirect()->route('list_mission')->with('message', 'Accès non autorisé. Utilisez un compte ayant les accès nécessaires.');
+        } else {
+            $client = $this->clientModel->find($clientId);
 
-        return view('client/modif_client.php', [
-            'client' => $client
-        ]);
+            return view('client/modif_client.php', [
+                'client' => $client
+            ]);
+        }
     }
 
     public function update() // à finir
     {
 
-        $clientData = $this->request->getPost();
-        $this->clientModel->save($clientData);
-        return redirect('page_client');
+        $user = auth()->user();
+        if (!$user->inGroup('admin') && !$user->inGroup('commercial')) {
+            // Redirige vers une page d'erreur personnalisée (par exemple page 403)
+            return redirect()->route('list_mission')->with('message', 'Accès non autorisé. Utilisez un compte ayant les accès nécessaires.');
+        } else {
+            $clientData = $this->request->getPost();
+            $this->clientModel->save($clientData);
+            return redirect('page_client');
+        }
     }
 
     public function suppr()
     {
-        $clientData = $this->request->getPost();
-        $this->clientModel->delete($clientData['ID_CLIENT']);
 
-        return redirect('page_client');
+        $user = auth()->user();
+        if (!$user->inGroup('admin') && !$user->inGroup('commercial')) {
+            // Redirige vers une page d'erreur personnalisée (par exemple page 403)
+            return redirect()->route('list_mission')->with('message', 'Accès non autorisé. Utilisez un compte ayant les accès nécessaires.');
+        } else {
+            $clientData = $this->request->getPost();
+            $this->clientModel->delete($clientData['ID_CLIENT']);
+
+            return redirect('page_client');
+        }
     }
 }

@@ -58,97 +58,127 @@ class Mission extends BaseController
         ]);
     }
 
-    public function modif($missionId): string
-    {
-        $mission = $this->missionModel->find($missionId);
-        $idMission = $mission['ID_MISSION'];
-        $client = $this->clientModel->find($mission['ID_CLIENT']);
-        $listeClient = $this->clientModel->findAll();
-        $profilsMission = $this->missionModel->getProfil($missionId);
-
-        $listNonProfilMission = $this->profilModel->getProfilsNotMission($idMission);
-
-        //créer une fonction qui ramène les profil qui ne soint pas dans le profil de la mission
-        // $listeProfil = $this->missionModel->getProfilNotMission(); //créer une fonction qui ramène les profil qui ne soint pas dans le profil de la mission
-
-
-        // var_dump($idMission);
-        // var_dump($client);
-        // var_dump($listeClient);
-        // var_dump($listNonProfilMission);
-        // var_dump($profilsMission);
-        // var_dump($listeProfil);
-        // die();
-
-        return view('mission/modif_mission', [
-            'mission' => $mission,
-            'client' => $client,
-            'listeClient' => $listeClient,
-            'profilsMission' => $profilsMission,
-            'listNonProfilMission' => $listNonProfilMission
-        ]);
-    }
-
     public function ajout()
     {
-        $clients = $this->clientModel->findAll();
-        $profils = $this->profilModel->findAll();
-        return view(
-            'mission/ajout_mission',
-            [
-                'listeClient' => $clients,
-                'listeProfil' => $profils
-            ]
-        );
+
+        $user = auth()->user();
+        if (!$user->inGroup('admin') && !$user->inGroup('commercial')) {
+            // Redirige vers une page d'erreur personnalisée (par exemple page 403)
+            return redirect()->route('list_mission')->with('message', 'Accès non autorisé. Utilisez un compte ayant les accès nécessaires.');
+        } else {
+            $clients = $this->clientModel->findAll();
+            $profils = $this->profilModel->findAll();
+            return view(
+                'mission/ajout_mission',
+                [
+                    'listeClient' => $clients,
+                    'listeProfil' => $profils
+                ]
+            );
+        }
     }
 
     public function create()
     {
-        $missionData = $this->request->getPost();
-        $this->missionModel->save($missionData);
+        $user = auth()->user();
+        if (!$user->inGroup('admin') && !$user->inGroup('commercial')) {
+            // Redirige vers une page d'erreur personnalisée (par exemple page 403)
+            return redirect()->route('list_mission')->with('message', 'Accès non autorisé. Utilisez un compte ayant les accès nécessaires.');
+        } else {
+            $missionData = $this->request->getPost();
+            $this->missionModel->save($missionData);
 
-        // récupération du dernier ID inséré
-        $idMission = $this->missionModel->getInsertID();
+            // récupération du dernier ID inséré
+            $idMission = $this->missionModel->getInsertID();
 
-        // récupération de la liste des profils
-        $listProfil = $this->request->getPost('profils[]');
+            // récupération de la liste des profils
+            $listProfil = $this->request->getPost('profils[]');
 
-        // parcour la liste de profils de la mission
-        foreach ($listProfil as $idProfil) {
-            // récupération du nombre par profil courrant
-            $nbre = $this->request->getPost($idProfil);
-            $this->missionModel->addProfil($idMission, $idProfil, $nbre);
+            // parcour la liste de profils de la mission
+            foreach ($listProfil as $idProfil) {
+                // récupération du nombre par profil courrant
+                $nbre = $this->request->getPost($idProfil);
+                $this->missionModel->addProfil($idMission, $idProfil, $nbre);
+            }
+            return redirect('list_mission');
         }
-        return redirect('list_mission');
     }
 
+    public function modif($missionId)
+    {
+
+        $user = auth()->user();
+        if (!$user->inGroup('admin') && !$user->inGroup('commercial')) {
+            // Redirige vers une page d'erreur personnalisée (par exemple page 403)
+            return redirect()->route('list_mission')->with('message', 'Accès non autorisé. Utilisez un compte ayant les accès nécessaires.');
+        } else {
+            $mission = $this->missionModel->find($missionId);
+            $idMission = $mission['ID_MISSION'];
+            $client = $this->clientModel->find($mission['ID_CLIENT']);
+            $listeClient = $this->clientModel->findAll();
+            $profilsMission = $this->missionModel->getProfil($missionId);
+
+            $listNonProfilMission = $this->profilModel->getProfilsNotMission($idMission);
+
+            //créer une fonction qui ramène les profil qui ne soint pas dans le profil de la mission
+            // $listeProfil = $this->missionModel->getProfilNotMission(); //créer une fonction qui ramène les profil qui ne soint pas dans le profil de la mission
+
+
+            // var_dump($idMission);
+            // var_dump($client);
+            // var_dump($listeClient);
+            // var_dump($listNonProfilMission);
+            // var_dump($profilsMission);
+            // var_dump($listeProfil);
+            // die();
+
+            return view('mission/modif_mission', [
+                'mission' => $mission,
+                'client' => $client,
+                'listeClient' => $listeClient,
+                'profilsMission' => $profilsMission,
+                'listNonProfilMission' => $listNonProfilMission
+            ]);
+        }
+    }
 
     public function update()
     {
-        $missionData = $this->request->getPost();
-        $this->missionModel->save($missionData);
+        $user = auth()->user();
+        if (!$user->inGroup('admin') && !$user->inGroup('commercial')) {
+            // Redirige vers une page d'erreur personnalisée (par exemple page 403)
+            return redirect()->route('list_mission')->with('message', 'Accès non autorisé. Utilisez un compte ayant les accès nécessaires.');
+        } else {
+            $missionData = $this->request->getPost();
+            $this->missionModel->save($missionData);
 
-        $idMission = $this->request->getPost('ID_MISSION');
+            $idMission = $this->request->getPost('ID_MISSION');
 
-        $listProfil = $this->request->getPost('ID_PROFIL[]');
+            $listProfil = $this->request->getPost('ID_PROFIL[]');
 
-        foreach ($listProfil as $idProfil) {
-            $nbre = $this->request->getPost($idProfil);
-            $this->missionModel->updateProfil($idMission, $idProfil, $nbre);
+            foreach ($listProfil as $idProfil) {
+                $nbre = $this->request->getPost($idProfil);
+                $this->missionModel->updateProfil($idMission, $idProfil, $nbre);
+            }
+            var_dump($missionData);
+            return redirect()->to(url_to("gestion_mission", $idMission));
         }
-        var_dump($missionData);
-        return redirect()->to(url_to("gestion_mission", $idMission));
-        // return redirect('list_mission');
     }
 
     public function suppr()
     {
-        $missionData = $this->request->getPost(['ID_MISSION']);
-        $this->missionModel->deleteProfilsMission($missionData);
-        $this->missionModel->delete($missionData);
-        // var_dump($missionData);
-        // die();
-        return redirect('list_mission');
+        $user = auth()->user();
+        if (!$user->inGroup('admin') && !$user->inGroup('commercial')) {
+            // Redirige vers une page d'erreur personnalisée (par exemple page 403)
+            return redirect()->route('list_mission')->with('message', 'Accès non autorisé. Utilisez un compte ayant les accès nécessaires.');
+        } else {
+            $missionData = $this->request->getPost(['ID_MISSION']);
+            $this->missionModel->deleteProfilsMission($missionData);
+            $this->missionModel->delete($missionData);
+            // var_dump($missionData);
+            // die();
+            return redirect('list_mission');
+        }
     }
 
     public function attribution()

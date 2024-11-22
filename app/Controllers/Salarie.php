@@ -46,61 +46,86 @@ class Salarie extends BaseController
     public function create()
     {
 
-        $salarieData = $this->request->getPost();
-        $this->salarieModel->save($salarieData);
-
-        $idSalarie = $this->salarieModel->getInsertID();
-
-        $listProfil = $this->request->getPost('profils[]');
-
-        foreach ($listProfil as $idProfil) {
-            $this->salarieModel->addProfil($idSalarie, $idProfil);
+        $user = auth()->user();
+        if (!$user->inGroup('admin') && !$user->inGroup('ressourcehumaine')) {
+            // Redirige vers une page d'erreur personnalisée (par exemple page 403)
+            return redirect()->route('list_mission')->with('message', 'Accès non autorisé. Utilisez un compte ayant les accès nécessaires.');
         }
-
-        // var_dump($salarieData);
-        // var_dump($idSalarie);
-        // var_dump($listProfil);
-        // die();
-        return redirect('page_salarie');
+        else {
+            $salarieData = $this->request->getPost();
+            $this->salarieModel->save($salarieData);
+    
+            $idSalarie = $this->salarieModel->getInsertID();
+    
+            $listProfil = $this->request->getPost('profils[]');
+    
+            foreach ($listProfil as $idProfil) {
+                $this->salarieModel->addProfil($idSalarie, $idProfil);
+            }
+    
+            // var_dump($salarieData);
+            // var_dump($idSalarie);
+            // var_dump($listProfil);
+            // die();
+            return redirect('page_salarie');
+        }
     }
 
-    public function modif($salarieId)
+    public function modif($salarieId): string
     {
-        $salarie = $this->salarieModel->find($salarieId);
-        $idSalarie = $salarie['ID_SALARIE'];
-        $profilsSalarie = $this->salarieModel->getProfil($salarieId);
-        $listNonProfilSalarie = $this->profilModel->getProfilsNotSalarie($idSalarie);
+        $user = auth()->user();
+        if (!$user->inGroup('admin') && !$user->inGroup('ressourcehumaine')) {
+            // Redirige vers une page d'erreur personnalisée (par exemple page 403)
+            return redirect()->route('list_mission')->with('message', 'Accès non autorisé. Utilisez un compte ayant les accès nécessaires.');
+        } else {
+            $salarie = $this->salarieModel->find($salarieId);
+            $idSalarie = $salarie['ID_SALARIE'];
+            $profilsSalarie = $this->salarieModel->getProfil($salarieId);
+            $listNonProfilSalarie = $this->profilModel->getProfilsNotSalarie($idSalarie);
         // var_dump($salarie);
         // var_dump($idSalarie);
 
         // var_dump($listNonProfilSalarie);
         // die();
 
-        return view('salarie/modif_salarie', [
-            'salarie' => $salarie,
-            'profilsSalarie' => $profilsSalarie,
-            'listNonProfilSalarie' => $listNonProfilSalarie
-        ]);
+            return view('salarie/modif_salarie', [
+                'salarie' => $salarie,
+                'profilsSalarie' => $profilsSalarie,
+                'listNonProfilSalarie' => $listNonProfilSalarie
+            ]);
     }
 
     public function update()
     {
+        $user = auth()->user();
+        if (!$user->inGroup('admin') && !$user->inGroup('ressourcehumaine')) {
+            // Redirige vers une page d'erreur personnalisée (par exemple page 403)
+            return redirect()->route('list_mission')->with('message', 'Accès non autorisé. Utilisez un compte ayant les accès nécessaires.');
+        }
+        else {
+            $salarieData = $this->request->getPost();
 
-        $salarieData = $this->request->getPost();
-
-        // var_dump($salarieData);
-        // var_dump($salarieFiles);
-        // die();
-        $this->salarieModel->save($salarieData);
-        return redirect('page_salarie');
+            // var_dump($salarieData);
+            // var_dump($salarieFiles);
+            // die();
+            $this->salarieModel->save($salarieData);
+            return redirect('page_salarie');
+        }
     }
 
     public function suppr()
     {
-        $salarieData = $this->request->getPost(['ID_SALARIE']);
-        $this->salarieModel->deleteProfilsSalarie($salarieData);
-        $this->salarieModel->delete($salarieData);
-        return redirect('page_salarie');
+        $user = auth()->user();
+        if (!$user->inGroup('admin') && !$user->inGroup('ressourcehumaine')) {
+            // Redirige vers une page d'erreur personnalisée (par exemple page 403)
+            return redirect()->route('list_mission')->with('message', 'Accès non autorisé. Utilisez un compte ayant les accès nécessaires.');
+        }
+        else {
+            $salarieData = $this->request->getPost(['ID_SALARIE']);
+            $this->salarieModel->deleteProfilsSalarie($salarieData);
+            $this->salarieModel->delete($salarieData);
+            return redirect('page_salarie');
+        }
     }
 
     public function ajoutProfil()
