@@ -1,3 +1,9 @@
+<?php
+$user = auth()->user();
+$admin = $user && $user->inGroup('admin');
+$com = $user && $user->inGroup('com');
+$rhu = $user && $user->inGroup('rhu');
+?>
 <!DOCTYPE html>
 <html lang="en">
 

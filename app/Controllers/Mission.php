@@ -21,10 +21,10 @@ class Mission extends BaseController
     public function list(): string
     {
         $missions = $this->missionModel->findJoinAll();
-        $user = auth()->user();
+        // $user = auth()->user();
         return view('mission/liste_missions.php', [
             'listeMissions' => $missions,
-            'com' => $user && $user->inGroup('com')
+            // 'com' => $user && $user->inGroup('com')
         ]);
     }
 
