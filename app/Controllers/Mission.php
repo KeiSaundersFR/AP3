@@ -188,19 +188,34 @@ class Mission extends BaseController
 
     public function attribution($missionId)
     {
+
         $mission = $this->missionModel->find($missionId);
         $profilsMission = $this->missionModel->getProfil($missionId);
+
         $listeSalarie = $this->salarieModel->findAll();
-        return view('mission/affect_mission',[
-                'mission' => $mission,
-                'profilMission' => $profilsMission,
-                'listeSalarie' => $listeSalarie
-            ]
-        );
+        $profilsSalarie = [];
+        foreach ($listeSalarie as $salarie) {
+            $profilsSalarie[] = $this->salarieModel->getProfil($salarie['ID_SALARIE']);
+        }
+
+        // var_dump($mission);
+        // var_dump($profilsMission);
+        // var_dump($listeSalarie);
+        // die();
+
+        return view('mission/affect_mission', [
+            'mission' => $mission,
+            'profilsMission' => $profilsMission,
+            'listeSalarie' => $listeSalarie,
+            'profilsSalarie' => $profilsSalarie,
+        ]);
     }
+
     public function affect()
     {
-
+        // creation de methode pour affecter les salariés à salarie_mission
+        // creation et connection à la table salarie_mission dans le model Mission
+        
         return redirect('');
     }
 

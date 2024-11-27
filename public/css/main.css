@@ -290,6 +290,35 @@ footer .copyrights {
     flex-direction: row;
     flex-wrap: wrap;
 }
+/* contener profil mission pour l'affectation */
+.containerp {
+
+    height: auto;
+    width: auto;
+    padding: 20px;
+    display: flex;
+    float: left;
+    align-self: center;
+    background: #14a4ddcc;
+    margin: 10px;
+}
+
+.productp {
+
+    width: 300px;
+    padding: 10px;
+    border: 1px solid #ffffff;
+    text-align: center;
+    background: #ffffff;
+    /* height: 200px; */
+
+}
+
+.contentp {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
 
 /* container salarie */
 .scontainer {
