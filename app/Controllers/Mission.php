@@ -215,8 +215,11 @@ class Mission extends BaseController
     {
         // creation de methode pour affecter les salariés à salarie_mission
         // creation et connection à la table salarie_mission dans le model Mission
+        $data = $this->request->getPost();
+        var_dump($data);
+        die();
         
-        return redirect('');
+        return redirect()->to(url_to("affect_mission", $idMission));
     }
 
     public function ajoutProfil()

@@ -111,4 +111,14 @@ class Mission extends Model
         $builder->Where('ID_PROFIL', $idProfil);
         $builder->delete();
     }
+
+    public function addSalarie($idSalarie, $idMission)
+    {
+        $db = \Config\Database::Connect();
+        $builder = $db->table('salarie_mission');
+        $builder->insert([
+            'ID_SALARIE' => $idSalarie,
+            'ID_MISSION' => $idMission
+        ]);
+    }
 }
