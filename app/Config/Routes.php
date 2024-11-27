@@ -81,5 +81,5 @@ $routes->post('suppr_profil_mission', 'Mission::supprProfil', ['as' => 'suppr_pr
 $routes->post('ajout_profil_salarie', 'Salarie::ajoutProfil', ['as' => 'ajout_profil_salarie']);
 $routes->post('suppr_profil_salarie', 'Salarie::supprProfil', ['as' => 'suppr_profil_salarie']);
 // routes page error
-$routes->get('error_message', 'Error::message', ['as'=> 'page_erreur']);
-$routes->post('error_message', 'Error::error', ['as'=> 'error_conexion']);
+// $routes->get('error_message', 'Error::message', ['as'=> 'page_erreur']);
+// $routes->post('error_message', 'Error::error', ['as'=> 'error_conexion']);

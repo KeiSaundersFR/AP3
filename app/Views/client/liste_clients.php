@@ -1,41 +1,37 @@
 <?= $this->extend('layout') ?>
 <?= $this->section('contenu') ?>
-<html>
-<!-- <link rel="stylesheet" type="text/css" href="css/main.css" /> -->
 
-<body>
-    <a href=<?= url_to("ajout_client") ?>>Ajouter client</a>
+<a href=<?= url_to("ajout_client") ?>><button>Ajouter client</button></a>
 
+<div class="scontent">
     <?php
     foreach ($listeClients as $client) {
     ?>
-        <p>
-            <?php
+        <div class="scontainer">
+            <div class="sproduct">
 
-            echo $client['RAISON_SOCIAL'],
-            "<br/>",
-            $client['CONTACT'],
-            "<br/>",
-            $client['NUM_TELEPHONE_CLIENT'],
-            "<br/>",
-            $client['ADRESSE_CLIENT'],
-            "<br/>",
-            '<a href="' . url_to("modif_client", $client['ID_CLIENT']) . '" >Modifier</a>';
-            ?>
-            <form method="post" action=" <?= url_to('suppr_client') ?>">
-                <input id="ID_CLIENT" name="ID_CLIENT" type="hidden" value="<?= $client['ID_CLIENT']?>">
-                <input type="submit" value="supprimer">
-            </form>
-            
+                <fieldset>
+                    <img src="img\icon_client.png" />
+                    <legend>
+                        <h4><?= $client['RAISON_SOCIAL'] ?></h4>
+                    </legend>
+                    <h4><?= $client['CONTACT'] ?></h4>
+                    <p><?= $client['NUM_TELEPHONE_CLIENT'] ?></p>
 
-    </p><br>
-<?php
+                    <p><?= $client['ADRESSE_CLIENT'] ?></p>
+                    <p><?= $client['CODE_POSTAL_CLIENT'] ?> <?= $client['VILLE_CLIENT'] ?></p>
+                </fieldset>
+                <a href=" <?= url_to("modif_client", $client['ID_CLIENT']) ?>"><button>Modifier</button></a>
 
-
+                <form method="post" action=" <?= url_to('suppr_client') ?>">
+                    <input id="ID_CLIENT" name="ID_CLIENT" type="hidden" value="<?= $client['ID_CLIENT'] ?>">
+                    <input type="submit" value="Supprimer">
+                </form>
+            </div>
+        </div>
+    <?php
     }
     ?>
-</body>
-
-</html>
+</div>
 
 <?= $this->endSection() ?>

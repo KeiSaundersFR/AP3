@@ -14,6 +14,7 @@ class Mission extends Model
     protected $protectFields    = true;
     protected $allowedFields    = [
         'INTITULE_MISSION',
+        'ID_CLIENT',
         'DESCRIPTION',
         'DATE_DEBUT',
         'DATE_FIN'

@@ -7,6 +7,7 @@ class Mission extends BaseController
     private $missionModel;
     private $clientModel;
     private $profilModel;
+    private $salarieModel;
 
     public function __construct()
     {
@@ -15,6 +16,8 @@ class Mission extends BaseController
         $this->clientModel = model('Client');
         // $this->clientModel = new Client();
         $this->profilModel = model('Profil');
+        // $this->clientModel = new Client();
+        $this->salarieModel = model('Salarie');
         // $this->clientModel = new Client();
     }
 
@@ -85,7 +88,9 @@ class Mission extends BaseController
             // Redirige vers une page d'erreur personnalisée (par exemple page 403)
             return redirect()->route('list_mission')->with('message', 'Accès non autorisé. Utilisez un compte ayant les accès nécessaires.');
         } else {
+
             $missionData = $this->request->getPost();
+
             $this->missionModel->save($missionData);
 
             // récupération du dernier ID inséré
@@ -181,10 +186,17 @@ class Mission extends BaseController
         }
     }
 
-    public function attribution()
+    public function attribution($missionId)
     {
-
-        return redirect('');
+        $mission = $this->missionModel->find($missionId);
+        $profilsMission = $this->missionModel->getProfil($missionId);
+        $listeSalarie = $this->salarieModel->findAll();
+        return view('mission/affect_mission',[
+                'mission' => $mission,
+                'profilMission' => $profilsMission,
+                'listeSalarie' => $listeSalarie
+            ]
+        );
     }
     public function affect()
     {

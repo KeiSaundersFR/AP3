@@ -29,7 +29,7 @@
             <p><?= $mission['DESCRIPTION'] ?></p>
         </div>
         <div class="buttonsMission">
-            <button>Affecter le(s) salarié(s)</button>
+        <a href=<?= url_to("attribution_mission", $mission['ID_MISSION'])?>><button>Affecter le(s) salarié(s)</button>
             <a href=<?= url_to("modif_mission", $mission['ID_MISSION'])?>><button>Modifier</button></a>
             <form method="post" action=" <?= url_to('suppr_mission') ?>">
                 <input id="ID_MISSION" name="ID_MISSION" type="hidden" value="<?= $mission['ID_MISSION'] ?>">

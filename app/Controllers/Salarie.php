@@ -53,7 +53,8 @@ class Salarie extends BaseController
         else {
             $salarieData = $this->request->getPost();
             $this->salarieModel->save($salarieData);
-
+            // var_dump($salarieData);
+            // die();
             $idSalarie = $this->salarieModel->getInsertID();
 
             $listProfil = $this->request->getPost('profils[]');
@@ -65,8 +66,7 @@ class Salarie extends BaseController
             // var_dump($salarieData);
             // var_dump($idSalarie);
             // var_dump($listProfil);
-            // die();
-            return redirect('page_salarie');
+            // return redirect('page_salarie');
         }
     }
 

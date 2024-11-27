@@ -4,7 +4,7 @@
 <link rel="stylesheet" type="text/css" href="css/main.css" />
 
 <!-- <body> -->
-<a href=<?= url_to("ajout_mission") ?>>Ajouter mission</a>
+<a href=<?= url_to("ajout_mission") ?>><button>Ajouter mission</button></a>
 
 <div class="content">
     <?php
@@ -17,18 +17,6 @@
                     <!-- <p><?= $mission['DESCRIPTION'] ?></p> -->
                     <p><?= $mission['RAISON_SOCIAL'] ?></p>
                     <p><?= $mission['DATE_DEBUT'], " ", $mission['DATE_FIN'] ?></p>
-
-                    <?php
-
-                    // echo $mission['INTITULE_MISSION'],
-                    // $mission['DESCRIPTION'],
-                    // $mission['RAISON_SOCIAL'],
-                    // $mission['DATE_DEBUT'],
-                    // $mission['DATE_FIN'],
-                    // echo '<a href="' . url_to("modif_mission", $mission['ID_MISSION']) . '" >Modifier</a>';
-                    ?>
-
-
                 </div>
             </a>
         </div>
