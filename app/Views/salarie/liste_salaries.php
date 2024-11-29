@@ -3,7 +3,7 @@
 
 <link rel="stylesheet" type="text/css" href="css/main.css" />
 
-<a class=button href="<?= url_to('ajout_salarie') ?>">Ajouter un salarié </a>
+<a class=button href="<?= url_to('ajout_salarie') ?>"><button>Ajouter un salarié</button></a>
 
 <div class="scontent">
     <?php
@@ -13,8 +13,10 @@
             <div class="sproduct">
 
                 <fieldset>
-                    <img src="img\icon_salarie.png"/>
-                    <legend><h4><?= $salarie['NOM'] ?> <?= $salarie['PRENOM'] ?></h4></legend>
+                    <img src="img\icon_salarie.png" />
+                    <legend>
+                        <h4><?= $salarie['NOM'] ?> <?= $salarie['PRENOM'] ?></h4>
+                    </legend>
                     <p><?= $salarie['EMAIL_SALARIE'] ?></p>
                     <p><?= $salarie['NUM_TELEPHONE_SALARIE'] ?></p>
 

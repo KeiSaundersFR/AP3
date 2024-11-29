@@ -14,6 +14,7 @@ class Mission extends Model
     protected $protectFields    = true;
     protected $allowedFields    = [
         'INTITULE_MISSION',
+        'ID_CLIENT',
         'DESCRIPTION',
         'DATE_DEBUT',
         'DATE_FIN'
@@ -109,5 +110,35 @@ class Mission extends Model
         $builder->Where('ID_MISSION', $idMission);
         $builder->Where('ID_PROFIL', $idProfil);
         $builder->delete();
+    }
+
+    public function addSalarie($idSalarie, $idMission)
+    {
+        $db = \Config\Database::Connect();
+        $builder = $db->table('salarie_mission');
+        $builder->insert([
+            'ID_SALARIE' => $idSalarie,
+            'ID_MISSION' => $idMission,
+        ]);
+    }
+
+    public function deleteSalarie($idMission,$idProfil)
+    {
+        $db = \Config\Database::Connect();
+        $builder = $db->table('mission');
+        $builder->join('profil_mission', 'profil_mission.ID_MISSION=mission.ID_MISSION');
+        $builder->join('salarie_mission', 'salarie_mission.ID_MISSION=mission.ID_MISSION');
+        $builder->Where('mission.ID_MISSION', $idMission);
+        $builder->Where('profil_mission.ID_PROFIL', $idProfil);
+        $builder->delete('ID_SALARIE');
+    }
+
+    public function getSalarie($idMission)
+    {
+        $db =\Config\Database::Connect();
+        $builder = $db->table('salarie_mission');
+        $query = $builder->getWhere(['ID_MISSION' => $idMission]);
+        return $query->getResultArray();
+
     }
 }
