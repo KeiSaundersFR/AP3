@@ -5,7 +5,7 @@
 // var_dump($profilsMission);
 // var_dump($listeSalarie);
 ?>
-<div class="fcontent">
+<div class="contentPf">
     <fieldset>
         <legend>Affectation des salariés</legend>
         <div class="contentp">
@@ -17,29 +17,24 @@
                     <div class="containerp">
                         <div class="productp">
                             <p><?= $profilM['INTITULE_PROFIL'] ?></p>
-                            <p>ID du profil : <?= $profilM['ID_PROFIL'] ?></p>
                             <form method="post" action="<?= url_to('affect_mission') ?>">
+                                <input id="ID_MISSION" name="ID_MISSION" type="hidden" value="<?= $mission['ID_MISSION'] ?>">
                                 <input id="ID_PROFIL" name="ID_PROFIL" type="hidden" value="<?= $profilM['ID_PROFIL'] ?>">
                                 <select id="ID_SALARIE" name="ID_SALARIE">
-                                <?php
-                                foreach ($listeSalarie as $salarie) {
-                                    // pour chaque salarie dans listeSalarie
-
-                                    // var_dump($listeSalarie);
-                                    // var_dump($salarie);
-
-                                    foreach ($profilsSalarie as $profils) {
-                                        foreach ($profils as $profil) {
-                                            if ($salarie['ID_SALARIE'] == $profil['ID_SALARIE']) {
-                                                if ($profil['ID_PROFIL'] == $profilM['ID_PROFIL']) {
-                                                    echo '<option value="' . $salarie['ID_SALARIE'] . '" required>' . $salarie['NOM'] . '</option>';
-                                                    // echo 'L id du salarie '. $salarie['ID_SALARIE'] . '<br>';
+                                    <option value="" require>Sélectionner un salarié</option>
+                                    <?php
+                                    foreach ($listeSalarie as $salarie) {
+                                        foreach ($profilsSalarie as $profils) {
+                                            foreach ($profils as $profil) {
+                                                if ($salarie['ID_SALARIE'] == $profil['ID_SALARIE']) {
+                                                    if ($profil['ID_PROFIL'] == $profilM['ID_PROFIL']) {
+                                                        echo '<option value="' . $salarie['ID_SALARIE'] . '" required>' . $salarie['NOM'] . '</option>';
+                                                    }
                                                 }
                                             }
                                         }
                                     }
-                                }
-                                ?>
+                                    ?>
                                 </select>
                                 <input type="submit" value="+">
                             </form>

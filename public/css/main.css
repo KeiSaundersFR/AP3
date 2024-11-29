@@ -319,6 +319,23 @@ footer .copyrights {
     flex-direction: column;
     flex-wrap: wrap;
 }
+.contentPf form {
+    padding: 10px;
+}
+
+.contentPf {
+    max-width: 500px;
+    padding: 20px;
+    padding-left: 80px;
+    padding-right: 80px;
+    border: 2px solid #000;
+    justify-self: center;
+    background-color: #f5f5f5;
+    /* Couleur de fond (optionnel) */
+}
+
+
+
 
 /* container salarie */
 .scontainer {
