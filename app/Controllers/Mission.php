@@ -192,8 +192,6 @@ class Mission extends BaseController
         $mission = $this->missionModel->find($missionId);
         $profilsMission = $this->missionModel->getProfil($missionId);
 
-        $salariesMission = $this->missionModel->getSalarie($missionId);
-
         $listeSalarie = $this->salarieModel->findAll();
         $profilsSalarie = [];
         foreach ($listeSalarie as $salarie) {
@@ -203,7 +201,6 @@ class Mission extends BaseController
         // var_dump($mission);
         // var_dump($profilsMission);
         // var_dump($listeSalarie);
-        // var_dump($salariesMission);
         // die();
 
         return view('mission/affect_mission', [
@@ -211,7 +208,6 @@ class Mission extends BaseController
             'profilsMission' => $profilsMission,
             'listeSalarie' => $listeSalarie,
             'profilsSalarie' => $profilsSalarie,
-            'salariesMission' => $salariesMission
         ]);
     }
 
@@ -219,7 +215,7 @@ class Mission extends BaseController
     {
         // creation de methode pour affecter les salariés à salarie_mission
         // creation et connection à la table salarie_mission dans le model Mission
- 
+
         $data = $this->request->getPost();
         $idSalarie = $this->request->getPost('ID_SALARIE');
         $idMission = $this->request->getPost('ID_MISSION');
@@ -239,23 +235,23 @@ class Mission extends BaseController
         // where mission.ID_MISSION = 1 AND
         // profil_mission.ID_PROFIL = 2
 
-//SELECT salarie_mission.ID_MISSION, salarie_mission.ID_SALARIE, profil_mission.ID_PROFIL
-// FROM mission
-// join profil_mission on profil_mission.ID_MISSION=mission.ID_MISSION
-// join salarie_mission on salarie_mission.ID_MISSION=mission.ID_MISSION
-// where mission.ID_MISSION = 1 AND
-// profil_mission.ID_PROFIL =
-// (select id_profil from salarie_profil where ID_SALARIE = 1);
+        //SELECT salarie_mission.ID_MISSION, salarie_mission.ID_SALARIE, profil_mission.ID_PROFIL
+        // FROM mission
+        // join profil_mission on profil_mission.ID_MISSION=mission.ID_MISSION
+        // join salarie_mission on salarie_mission.ID_MISSION=mission.ID_MISSION
+        // where mission.ID_MISSION = 1 AND
+        // profil_mission.ID_PROFIL =
+        // (select id_profil from salarie_profil where ID_SALARIE = 1);
 
 
 
         // var_dump($data);
         // die();
-        $this->missionModel->deleteSalarie($idSalarie,$idProfil);
+        $this->missionModel->deleteSalarie($idSalarie, $idProfil);
 
-        $this->missionModel->addSalarie($idSalarie,$idMission);
+        $this->missionModel->addSalarie($idSalarie, $idMission);
         // var_dump($data);
-        
+
         return redirect()->to(url_to("attribution_mission", $idMission));
     }
 
