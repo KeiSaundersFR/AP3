@@ -21,10 +21,11 @@ $rhu = $user && $user->inGroup('rhu');
         <nav class="menu">
             <ul>
 
-                <li><a href="<?= url_to('list_mission') ?>">liste mission</a></li>
+                <?= $rhu ? '' : '<li><a href="' . url_to('list_mission') . '">liste mission</a></li>' ?>
                 <?= $com ? '' : '<li><a href="' . url_to('page_salarie') . '">liste salarié</a></li>' ?>
-                <li><a href="<?= url_to('page_client') ?>">liste client</a></li>
-                <li><a href="<?= url_to('page_profil') ?>">liste profil</a></li>
+                <?= $rhu ? '' : '<li><a href="' . url_to('page_client') . '">liste client</a></li>' ?>
+                <?= $admin ? '<li><a href="' . url_to('page_profil') . '">liste profil</a></li>' : '' ?>
+                <li><a href="<?= url_to('logout') ?>">Deconnexion</a></li>
             </ul>
         </nav>
 

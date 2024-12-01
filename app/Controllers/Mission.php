@@ -21,14 +21,24 @@ class Mission extends BaseController
         // $this->clientModel = new Client();
     }
 
-    public function list(): string
+    public function logout()
     {
-        $missions = $this->missionModel->findJoinAll();
-        // $user = auth()->user();
-        return view('mission/liste_missions.php', [
-            'listeMissions' => $missions,
-            // 'com' => $user && $user->inGroup('com')
-        ]);
+        return redirect('logout');
+    }
+
+    public function list()
+    {
+        $user = auth()->user();
+        if (!$user->inGroup('admin') && !$user->inGroup('com')) {
+            // Redirige vers une page d'erreur personnalisée (par exemple page 403)
+            return redirect()->route('page_salarie')->with('message', 'Accès non autorisé. Utilisez un compte ayant les accès nécessaires.');
+        } else {
+            $missions = $this->missionModel->findJoinAll();
+            return view('mission/liste_missions.php', [
+                'listeMissions' => $missions,
+                // 'com' => $user && $user->inGroup('com')
+            ]);
+        }
     }
 
     public function mission($missionId)

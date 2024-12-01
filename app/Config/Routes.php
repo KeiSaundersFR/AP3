@@ -83,3 +83,5 @@ $routes->post('suppr_profil_salarie', 'Salarie::supprProfil', ['as' => 'suppr_pr
 // routes page error
 // $routes->get('error_message', 'Error::message', ['as'=> 'page_erreur']);
 // $routes->post('error_message', 'Error::error', ['as'=> 'error_conexion']);
+
+$routes->get('logout', 'Mission::logout', ['as' => 'logout']);
