@@ -213,46 +213,47 @@ class Mission extends BaseController
 
     public function affect()
     {
-        // creation de methode pour affecter les salariés à salarie_mission
-        // creation et connection à la table salarie_mission dans le model Mission
 
         $data = $this->request->getPost();
-        $idSalarie = $this->request->getPost('ID_SALARIE');
-        $idMission = $this->request->getPost('ID_MISSION');
-        $idProfil = $this->request->getPost('ID_PROFIL');
+        $nbr = $this->request->getPost('nbr');
 
-        // supprimer le salarie_mission 
-        // where salarie_profil id_profil correspond à profil_mission
-        // 
-        // Si id_mission=x et id_profil=y
-        // selectionner id_mission=x et id_profil=y
-        // suprimer id_salarie
+        $missionId = $this->request->getPost('ID_MISSION_0');
+        $this->missionModel->deleteSalarie($missionId);
 
-        // SELECT mission.ID_MISSION, salarie_mission.ID_SALARIE, profil_mission.ID_PROFIL
-        // FROM mission
-        // join profil_mission on profil_mission.ID_MISSION=mission.ID_MISSION
-        // join salarie_mission on salarie_mission.ID_MISSION=mission.ID_MISSION
-        // where mission.ID_MISSION = 1 AND
-        // profil_mission.ID_PROFIL = 2
+        //Cette partie est OK mais il faut que je vérifie si c'est le même
+        // for ($i = 0; ($i < $nbr); $i++) {
+        //     $idSalarie = $this->request->getPost('ID_SALARIE_' . $i);
+        //     $idMission = $this->request->getPost('ID_MISSION_' . $i);
+        //     $this->missionModel->addSalarie($idSalarie, $idMission);
+        // };
 
-        //SELECT salarie_mission.ID_MISSION, salarie_mission.ID_SALARIE, profil_mission.ID_PROFIL
-        // FROM mission
-        // join profil_mission on profil_mission.ID_MISSION=mission.ID_MISSION
-        // join salarie_mission on salarie_mission.ID_MISSION=mission.ID_MISSION
-        // where mission.ID_MISSION = 1 AND
-        // profil_mission.ID_PROFIL =
-        // (select id_profil from salarie_profil where ID_SALARIE = 1);
+        //Cette partie vérifie si c'est le même
+        for ($i = 0; ($i < $nbr); $i++) {
+            $idSalarie = $this->request->getPost('ID_SALARIE_' . $i);
+            $idMission = $this->request->getPost('ID_MISSION_' . $i);
+            $idSalarie2 = $this->request->getPost('ID_SALARIE_' . ($i + 1));
+            // var_dump($idSalarie);
+            // var_dump($idSalarie2);
+            if ($idSalarie != '' || $idSalarie != null) {
+                if ($idSalarie == $idSalarie2) {
+                    echo '<h1>Selection des salariés non valide !<h1>';
+                    echo '<a href=' . url_to("attribution_mission", $missionId) . '><button>Retour</button>';
+                    $this->missionModel->deleteSalarie($missionId);
+                    die();
+                } else {
+
+                    $this->missionModel->addSalarie($idSalarie, $idMission);
+                }
+            } else {
+                echo '<h1>Selection des salariés vide !<h1>';
+                echo '<a href=' . url_to("attribution_mission", $missionId) . '><button>Retour</button>';
+                $this->missionModel->deleteSalarie($missionId);
+                die();
+            }
+        };
 
 
-
-        // var_dump($data);
-        // die();
-        $this->missionModel->deleteSalarie($idSalarie, $idProfil);
-
-        $this->missionModel->addSalarie($idSalarie, $idMission);
-        // var_dump($data);
-
-        return redirect()->to(url_to("attribution_mission", $idMission));
+        return redirect()->to(url_to("gestion_mission", $idMission));
     }
 
     public function ajoutProfil()
