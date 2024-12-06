@@ -1,6 +1,6 @@
 <?= $this->extend('layout') ?>
 <?= $this->section('contenu') ?>
-<html>
+
 <div class="fcontent">
     <form method="post" action="<?= url_to('update_salarie') ?>">
         <fieldset>
