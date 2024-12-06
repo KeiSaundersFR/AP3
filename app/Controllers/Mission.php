@@ -21,49 +21,47 @@ class Mission extends BaseController
         // $this->clientModel = new Client();
     }
 
+    // Methode verif auth
+    private function isAuthorized(): bool
+    {
+        $user = auth()->user();
+        return $user->inGroup('admin') || $user->inGroup('com');
+    }
+
+    // methode deconnexion
     public function logout()
     {
         return redirect('logout');
     }
 
+    // methode vue list mission
     public function list()
     {
-        $user = auth()->user();
-        if (!$user->inGroup('admin') && !$user->inGroup('com')) {
-            // Redirige vers une page d'erreur personnalisée (par exemple page 403)
-            return redirect()->route('page_salarie')->with('message', 'Accès non autorisé. Utilisez un compte ayant les accès nécessaires.');
-        } else {
-            $missions = $this->missionModel->findJoinAll();
-            return view('mission/liste_missions.php', [
-                'listeMissions' => $missions,
-                // 'com' => $user && $user->inGroup('com')
-            ]);
+        // verification si non RH
+        if (!$this->isAuthorized()) {
+            return redirect()->route('page_salarie');
         }
+        $missions = $this->missionModel->findJoinAll();
+        return view('mission/liste_missions.php', [
+            'listeMissions' => $missions,
+        ]);
     }
 
     public function mission($missionId)
     {
+        if (!$this->isAuthorized()) {
+            return redirect()->route('page_salarie');
+        }
+
         $mission = $this->missionModel->find($missionId);
         $client = $this->clientModel->find($mission['ID_CLIENT']);
         $profilsMission = $this->missionModel->getProfil($missionId);
-        // foreach($profilsMission as $profilMission)
-        // {
-        //     $profils = $this->profilModel->findAll($profilMission['ID_PROFIL']);
-        // }
         $profilIds = [];
+
         foreach ($profilsMission as $profilMission) {
             $profilIds[] = $profilMission['ID_PROFIL'];
         }
 
-        // $profils = [];
-        // if (!empty($profilIds)) {
-        //     $profils = $this->profilModel->whereIn('ID_PROFIL', $profilIds)->findAll();
-        // }
-        // var_dump($mission);
-        // var_dump($client);
-        // var_dump($profilsMission);
-        // var_dump($profils);
-        // die();
         return view('mission/gestion_mission', [
             'mission' => $mission,
             'client' => $client,
@@ -74,131 +72,119 @@ class Mission extends BaseController
     public function ajout()
     {
 
-        $user = auth()->user();
-        if (!$user->inGroup('admin') && !$user->inGroup('commercial')) {
-            // Redirige vers une page d'erreur personnalisée (par exemple page 403)
-            return redirect()->route('list_mission')->with('message', 'Accès non autorisé. Utilisez un compte ayant les accès nécessaires.');
-        } else {
-            $clients = $this->clientModel->findAll();
-            $profils = $this->profilModel->findAll();
-            return view(
-                'mission/ajout_mission',
-                [
-                    'listeClient' => $clients,
-                    'listeProfil' => $profils
-                ]
-            );
+        if (!$this->isAuthorized()) {
+            return redirect()->route('page_salarie');
         }
+        $clients = $this->clientModel->findAll();
+        $profils = $this->profilModel->findAll();
+
+        return view(
+            'mission/ajout_mission',
+            [
+                'listeClient' => $clients,
+                'listeProfil' => $profils
+            ]
+        );
     }
 
     public function create()
     {
-        $user = auth()->user();
-        if (!$user->inGroup('admin') && !$user->inGroup('commercial')) {
-            // Redirige vers une page d'erreur personnalisée (par exemple page 403)
-            return redirect()->route('list_mission')->with('message', 'Accès non autorisé. Utilisez un compte ayant les accès nécessaires.');
-        } else {
-
-            $missionData = $this->request->getPost();
-
-            $this->missionModel->save($missionData);
-
-            // récupération du dernier ID inséré
-            $idMission = $this->missionModel->getInsertID();
-
-            // récupération de la liste des profils
-            $listProfil = $this->request->getPost('profils[]');
-
-            // parcour la liste de profils de la mission
-            foreach ($listProfil as $idProfil) {
-                // récupération du nombre par profil courrant
-                $nbre = $this->request->getPost($idProfil);
-                $this->missionModel->addProfil($idMission, $idProfil, $nbre);
-            }
-            return redirect('list_mission');
+        if (!$this->isAuthorized()) {
+            return redirect()->route('page_salarie');
         }
+
+        $missionData = $this->request->getPost();
+
+        $this->missionModel->save($missionData);
+
+        // récupération du dernier ID inséré
+        $idMission = $this->missionModel->getInsertID();
+
+        // récupération de la liste des profils
+        $listProfil = $this->request->getPost('profils[]');
+
+        // parcour la liste de profils de la mission
+        foreach ($listProfil as $idProfil) {
+            // récupération du nombre par profil courrant
+            $nbre = $this->request->getPost($idProfil);
+            $this->missionModel->addProfil($idMission, $idProfil, $nbre);
+        }
+        return redirect('list_mission');
     }
 
     public function modif($missionId)
     {
 
-        $user = auth()->user();
-        if (!$user->inGroup('admin') && !$user->inGroup('commercial')) {
-            // Redirige vers une page d'erreur personnalisée (par exemple page 403)
-            return redirect()->route('list_mission')->with('message', 'Accès non autorisé. Utilisez un compte ayant les accès nécessaires.');
-        } else {
-            $mission = $this->missionModel->find($missionId);
-            $idMission = $mission['ID_MISSION'];
-            $client = $this->clientModel->find($mission['ID_CLIENT']);
-            $listeClient = $this->clientModel->findAll();
-            $profilsMission = $this->missionModel->getProfil($missionId);
-
-            $listNonProfilMission = $this->profilModel->getProfilsNotMission($idMission);
-
-            //créer une fonction qui ramène les profil qui ne soint pas dans le profil de la mission
-            // $listeProfil = $this->missionModel->getProfilNotMission(); //créer une fonction qui ramène les profil qui ne soint pas dans le profil de la mission
-
-
-            // var_dump($idMission);
-            // var_dump($client);
-            // var_dump($listeClient);
-            // var_dump($listNonProfilMission);
-            // var_dump($profilsMission);
-            // var_dump($listeProfil);
-            // die();
-
-            return view('mission/modif_mission', [
-                'mission' => $mission,
-                'client' => $client,
-                'listeClient' => $listeClient,
-                'profilsMission' => $profilsMission,
-                'listNonProfilMission' => $listNonProfilMission
-            ]);
+        if (!$this->isAuthorized()) {
+            return redirect()->route('page_salarie');
         }
+        $mission = $this->missionModel->find($missionId);
+        $idMission = $mission['ID_MISSION'];
+        $client = $this->clientModel->find($mission['ID_CLIENT']);
+        $listeClient = $this->clientModel->findAll();
+        $profilsMission = $this->missionModel->getProfil($missionId);
+
+        $listNonProfilMission = $this->profilModel->getProfilsNotMission($idMission);
+
+        //créer une fonction qui ramène les profil qui ne soint pas dans le profil de la mission
+        // $listeProfil = $this->missionModel->getProfilNotMission(); //créer une fonction qui ramène les profil qui ne soint pas dans le profil de la mission
+
+
+        // var_dump($idMission);
+        // var_dump($client);
+        // var_dump($listeClient);
+        // var_dump($listNonProfilMission);
+        // var_dump($profilsMission);
+        // var_dump($listeProfil);
+        // die();
+
+        return view('mission/modif_mission', [
+            'mission' => $mission,
+            'client' => $client,
+            'listeClient' => $listeClient,
+            'profilsMission' => $profilsMission,
+            'listNonProfilMission' => $listNonProfilMission
+        ]);
     }
 
     public function update()
     {
-        $user = auth()->user();
-        if (!$user->inGroup('admin') && !$user->inGroup('commercial')) {
-            // Redirige vers une page d'erreur personnalisée (par exemple page 403)
-            return redirect()->route('list_mission')->with('message', 'Accès non autorisé. Utilisez un compte ayant les accès nécessaires.');
-        } else {
-            $missionData = $this->request->getPost();
-            $this->missionModel->save($missionData);
-
-            $idMission = $this->request->getPost('ID_MISSION');
-
-            $listProfil = $this->request->getPost('ID_PROFIL[]');
-
-            foreach ($listProfil as $idProfil) {
-                $nbre = $this->request->getPost($idProfil);
-                $this->missionModel->updateProfil($idMission, $idProfil, $nbre);
-            }
-            var_dump($missionData);
-            return redirect()->to(url_to("gestion_mission", $idMission));
+        if (!$this->isAuthorized()) {
+            return redirect()->route('page_salarie');
         }
+        $missionData = $this->request->getPost();
+        $this->missionModel->save($missionData);
+
+        $idMission = $this->request->getPost('ID_MISSION');
+
+        $listProfil = $this->request->getPost('ID_PROFIL[]');
+
+        foreach ($listProfil as $idProfil) {
+            $nbre = $this->request->getPost($idProfil);
+            $this->missionModel->updateProfil($idMission, $idProfil, $nbre);
+        }
+        var_dump($missionData);
+        return redirect()->to(url_to("gestion_mission", $idMission));
     }
 
     public function suppr()
     {
-        $user = auth()->user();
-        if (!$user->inGroup('admin') && !$user->inGroup('commercial')) {
-            // Redirige vers une page d'erreur personnalisée (par exemple page 403)
-            return redirect()->route('list_mission')->with('message', 'Accès non autorisé. Utilisez un compte ayant les accès nécessaires.');
-        } else {
-            $missionData = $this->request->getPost(['ID_MISSION']);
-            $this->missionModel->deleteProfilsMission($missionData);
-            $this->missionModel->delete($missionData);
-            // var_dump($missionData);
-            // die();
-            return redirect('list_mission');
+        if (!$this->isAuthorized()) {
+            return redirect()->route('page_salarie');
         }
+        $missionData = $this->request->getPost(['ID_MISSION']);
+        $this->missionModel->deleteProfilsMission($missionData);
+        $this->missionModel->delete($missionData);
+        // var_dump($missionData);
+        // die();
+        return redirect('list_mission');
     }
 
     public function attribution($missionId)
     {
-
+        if (!$this->isAuthorized()) {
+            return redirect()->route('page_salarie');
+        }
         $mission = $this->missionModel->find($missionId);
         $profilsMission = $this->missionModel->getProfil($missionId);
 
@@ -223,7 +209,9 @@ class Mission extends BaseController
 
     public function affect()
     {
-
+        if (!$this->isAuthorized()) {
+            return redirect()->route('page_salarie');
+        }
         $data = $this->request->getPost();
         $nbr = $this->request->getPost('nbr');
 
@@ -242,7 +230,8 @@ class Mission extends BaseController
             $idSalarie = $this->request->getPost('ID_SALARIE_' . $i);
             $idMission = $this->request->getPost('ID_MISSION_' . $i);
             $idSalarie2 = $this->request->getPost('ID_SALARIE_' . ($i + 1));
-            // var_dump($idSalarie);
+            // var_dump($data);
+            // die();
             // var_dump($idSalarie2);
             if ($idSalarie != '' || $idSalarie != null) {
                 if ($idSalarie == $idSalarie2) {
@@ -268,6 +257,9 @@ class Mission extends BaseController
 
     public function ajoutProfil()
     {
+        if (!$this->isAuthorized()) {
+            return redirect()->route('page_salarie');
+        }
         $idProfil = $this->request->getPost(['ID_PROFIL']);
         $nbrProfil = $this->request->getPost(['NOMBRE_PROFIL']);
         $idMission = $this->request->getPost('ID_MISSION');
@@ -282,6 +274,9 @@ class Mission extends BaseController
 
     public function supprProfil()
     {
+        if (!$this->isAuthorized()) {
+            return redirect()->route('page_salarie');
+        }
         $data = $this->request->getPost();
         $idMission = $this->request->getPost('ID_MISSION');
         $idProfil = $this->request->getPost('ID_PROFIL');
