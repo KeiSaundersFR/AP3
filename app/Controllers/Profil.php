@@ -12,8 +12,17 @@ class Profil extends BaseController
 
     }
 
-    public function list(): string
+    private function isAuthorized(): bool
     {
+        $user = auth()->user();
+        return $user->inGroup('admin');
+    }
+
+    public function list()
+    {
+        if (!$this->isAuthorized()) {
+            return redirect()->route('list_mission');
+        }
         $profils = $this->profilModel->findAll();
         return view('profil/liste_profils.php', [
             'listeProfils' => $profils
@@ -22,18 +31,27 @@ class Profil extends BaseController
     
     public function ajout()
     {
+        if (!$this->isAuthorized()) {
+            return redirect()->route('list_mission');
+        }
         return view('profil/ajout_profil');
     }
     
     public function create()
     {
+        if (!$this->isAuthorized()) {
+            return redirect()->route('list_mission');
+        }
         $profilData = $this->request->getPost();
         $this->profilModel->save($profilData);
         return redirect('page_profil');
     }
 
-    public function modif($profilId): string
+    public function modif($profilId)
     {
+        if (!$this->isAuthorized()) {
+            return redirect()->route('list_mission');
+        }
         $profil = $this->profilModel->find($profilId);
 
         return view('profil/modif_profil.php', [
@@ -43,7 +61,9 @@ class Profil extends BaseController
 
     public function update() 
     {
-
+        if (!$this->isAuthorized()) {
+            return redirect()->route('list_mission');
+        }
         $profilData = $this->request->getPost();
         $this->profilModel->save($profilData);
         return redirect('page_profil');
@@ -53,6 +73,9 @@ class Profil extends BaseController
 
     public function suppr()
     {
+        if (!$this->isAuthorized()) {
+            return redirect()->route('list_mission');
+        }
         $profilData = $this->request->getPost();
         $this->profilModel->delete($profilData['ID_PROFIL']);
 

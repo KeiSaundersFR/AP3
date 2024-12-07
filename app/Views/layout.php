@@ -18,6 +18,7 @@ $rhu = $user && $user->inGroup('rhu');
     <!-- HEADER: MENU + HEROE SECTION -->
     <header>
 
+        <h1>Bienvenue sur l'application Amset </h1>
         <nav class="menu">
             <ul>
 
@@ -28,13 +29,6 @@ $rhu = $user && $user->inGroup('rhu');
                 <li><a href="<?= url_to('logout') ?>">Deconnexion</a></li>
             </ul>
         </nav>
-
-
-        <div class="heroe">
-
-            <h1>Bienvenue à AMSET </h1>
-
-        </div>
 
     </header>
 
@@ -51,18 +45,18 @@ $rhu = $user && $user->inGroup('rhu');
     <!-- FOOTER: DEBUG INFO + COPYRIGHTS -->
 
     <footer>
+
         <div class="environment">
 
             <p>Page rendered in {elapsed_time} seconds</p>
-
+            <a href="https://github.com/Peraty12" target="_blank">https://github.com/Peraty12</a>
             <p>Environment: <?= ENVIRONMENT ?></p>
 
         </div>
 
         <div class="copyrights">
 
-            <p>&copy; <?= date('Y') ?> CodeIgniter Foundation. CodeIgniter is open source project released under the MIT
-                open source licence.</p>
+            <p>&copy; <?= date('Y') ?> MARQUEZ Paul, BONDOUX Bastian, XIONG Teddy. Projet Amset1 non open source publié dans le cadre du BTS SIO</p>
 
         </div>
 

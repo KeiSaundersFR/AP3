@@ -41,9 +41,13 @@ class Mission extends BaseController
         if (!$this->isAuthorized()) {
             return redirect()->route('page_salarie');
         }
-        $missions = $this->missionModel->findJoinAll();
+        $missionsFalse = $this->missionModel->findJoinAllFalse();
+        $missionsTrue = $this->missionModel->findJoinAllTrue();
+        // var_dump($missionsFalse);
+        // die();
         return view('mission/liste_missions.php', [
-            'listeMissions' => $missions,
+            'listeMissionsFalse' => $missionsFalse,
+            'listeMissionsTrue' => $missionsTrue,
         ]);
     }
 
@@ -174,6 +178,7 @@ class Mission extends BaseController
         }
         $missionData = $this->request->getPost(['ID_MISSION']);
         $this->missionModel->deleteProfilsMission($missionData);
+        $this->missionModel->deleteSalarie($missionData);
         $this->missionModel->delete($missionData);
         // var_dump($missionData);
         // die();
@@ -252,6 +257,8 @@ class Mission extends BaseController
         };
 
 
+        $data = ['STATUS' => 'affect'];
+        $this->missionModel->update($idMission,$data);
         return redirect()->to(url_to("gestion_mission", $idMission));
     }
 

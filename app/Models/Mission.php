@@ -17,7 +17,8 @@ class Mission extends Model
         'ID_CLIENT',
         'DESCRIPTION',
         'DATE_DEBUT',
-        'DATE_FIN'
+        'DATE_FIN',
+        'STATUS'
     ];
 
     protected bool $allowEmptyInserts = false;
@@ -57,6 +58,34 @@ class Mission extends Model
         client.RAISON_SOCIAL as RAISON_SOCIAL,
         client.ID_CLIENT')
             ->join('client', 'client.ID_CLIENT = mission.ID_CLIENT')
+            ->findAll();
+    }
+    public function findJoinAllFalse()
+    {
+        return $this
+            ->select('mission.ID_MISSION,
+        mission.INTITULE_MISSION,
+        mission.DESCRIPTION,
+        mission.DATE_DEBUT,
+        mission.DATE_FIN,
+        client.RAISON_SOCIAL as RAISON_SOCIAL,
+        client.ID_CLIENT')
+            ->join('client', 'client.ID_CLIENT = mission.ID_CLIENT')
+            ->where('mission.STATUS = "non affect"')
+            ->findAll();
+    }
+    public function findJoinAllTrue()
+    {
+        return $this
+            ->select('mission.ID_MISSION,
+        mission.INTITULE_MISSION,
+        mission.DESCRIPTION,
+        mission.DATE_DEBUT,
+        mission.DATE_FIN,
+        client.RAISON_SOCIAL as RAISON_SOCIAL,
+        client.ID_CLIENT')
+            ->join('client', 'client.ID_CLIENT = mission.ID_CLIENT')
+            ->where('mission.STATUS = "affect"')
             ->findAll();
     }
 
@@ -121,7 +150,7 @@ class Mission extends Model
             'ID_MISSION' => $idMission
         ]);
     }
-
+    
     public function deleteSalarie($idMission)
     {
         $db = \Config\Database::Connect();
@@ -130,12 +159,30 @@ class Mission extends Model
         $builder->delete();
     }
 
-    // public function getSalarie($idMission)
-    // {
-    //     $db =\Config\Database::Connect();
-    //     $builder = $db->table('salarie_mission');
-    //     $query = $builder->getWhere(['ID_MISSION' => $idMission]);
-    //     return $query->getResultArray();
+    public function deleteAll($idClient)
+    {
+        $db = \Config\Database::Connect();
+        $builder = $db->table('mission');
+        $builder->Where('mission.ID_CLIENT', $idClient);
+        $builder->delete();
+    }
 
+    public function findAllMissionByClient($idClient)
+    {
+        $db = \Config\Database::Connect();
+        $builder = $db->table('mission');
+        $query = $builder->getWhere(['ID_CLIENT' => $idClient]);
+        return $query->getResultArray();
+    }
+    
+    // public function modifValStatus($status, $idMission)
+    // {
+    //     $db = \Config\Database::Connect();
+    //     $builder = $db->table('mission');
+    //     $builder->where('mission.ID_MISSION', $idMission);
+    //     $builder->insert([
+    //         'STATUS' => $status
+    //     ]);
     // }
+    
 }

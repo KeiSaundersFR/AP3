@@ -25,7 +25,7 @@
 
                 <form method="post" action=" <?= url_to('suppr_client') ?>">
                     <input id="ID_CLIENT" name="ID_CLIENT" type="hidden" value="<?= $client['ID_CLIENT'] ?>">
-                    <input type="submit" value="Supprimer">
+                    <input type="submit" value="Supprimer" onclick="return confirm('Si vous SUPPRIMER ce client, supprime toutes les missions associés à ce client et les salariés associé à ces missions !')">
                 </form>
             </div>
         </div>

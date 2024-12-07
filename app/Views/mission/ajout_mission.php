@@ -53,6 +53,7 @@
             ?>
 
         </fieldset>
+        <input type="hidden" name="STATUS" value="non affect">
         <input type="submit" value="Créer">
         <input type="reset" value="Vider">
     </form>

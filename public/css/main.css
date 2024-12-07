@@ -9,7 +9,7 @@
 
 html,
 body {
-    color: rgba(33, 37, 41, 1);
+    color: rgb(0, 0, 0);
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
     font-size: 16px;
     margin: 0;
@@ -17,13 +17,19 @@ body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
 }
 
 header {
-    background-color: rgba(247, 248, 249, 1);
+    background-color: #370028;
     padding: .4rem 0 0;
 }
 
+header h1 {
+    color: white;
+}
 .menu {
     padding: .4rem 2rem;
 }
@@ -69,12 +75,11 @@ table tbody tr:nth-child(odd) {
 }
 
 header ul {
-    border-bottom: 1px solid rgba(242, 242, 242, 1);
     list-style-type: none;
     margin: 0;
-    overflow: hidden;
     padding: 0;
-    text-align: right;
+    display: flex;
+    justify-content: space-evenly;
 }
 
 header li {
@@ -83,7 +88,7 @@ header li {
 
 header li a {
     border-radius: 5px;
-    color: rgba(0, 0, 0, .5);
+    color: white;
     display: block;
     height: 44px;
     text-decoration: none;
@@ -155,8 +160,15 @@ header .heroe h2 {
 }
 
 section {
-    margin: 0 auto;
+    /* margin: 0 auto; */
     padding: 2.5rem 1.75rem 3.5rem 1.75rem;
+    background-color: darkslategray;
+    flex: 1;
+
+    
+}
+.mission {
+    display: flex;
 }
 
 section h1 {
@@ -211,13 +223,15 @@ section svg {
 }
 
 footer {
-    background-color: rgba(221, 72, 20, .8);
+    background-color: #370028;
     text-align: center;
+}
+footer a {
+    color: rgba(255, 255, 255, 1);
 }
 
 footer .environment {
     color: rgba(255, 255, 255, 1);
-    padding: 2rem 1.75rem;
 }
 
 footer .copyrights {
@@ -261,27 +275,35 @@ footer .copyrights {
     }
 }
 /* contener mission */
-.container {
+.containerf {
 
     height: auto;
     width: auto;
     padding: 20px;
     display: flex;
     float: left;
+    background: #da6363cc;
+    margin: 10px;
+}
+.containert {
 
-    background: #dd4814cc;
+    height: auto;
+    width: auto;
+    padding: 20px;
+    display: flex;
+    float: left;
+    background: #8bce74cc;
     margin: 10px;
 }
 
 .product {
 
     width: 300px;
-    margin: 10px;
-    padding: 10px;
-    border: 1px solid #ffffff;
+    border: 1px solid;
     text-align: center;
-    background: #ffffff;
+    background-color: #ffffff;
     height: 200px;
+    color: rgb(0, 0, 0);
 
 }
 
@@ -346,7 +368,7 @@ footer .copyrights {
     display: flex;
     float: left;
 
-    background: #dd4814cc;
+    background: #36686f;
     margin: 10px;
 }
 
