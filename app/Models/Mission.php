@@ -184,5 +184,13 @@ class Mission extends Model
     //         'STATUS' => $status
     //     ]);
     // }
+
+    public function deleteAllSalarieMission($idMission){
+        $db = \Config\Database::Connect();
+        $builder = $db->table('salarie_mission');
+        $builder->Where('salarie_mission.ID_MISSION', $idMission);
+        $builder->delete();
+    }
+
     
 }

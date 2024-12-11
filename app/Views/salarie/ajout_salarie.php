@@ -51,10 +51,10 @@
                 <option value="femme">Femme</option>
             </select><br>
         </fieldset>
-        <fieldset>
+        <!-- <fieldset>
             <legend>Photo</legend>
             <input type="file" id="photo" name="PHOTO_SALARIE" /><br>
-        </fieldset>
+        </fieldset> -->
         <fieldset>
 
             <legend>Selectioner les profils</legend>
@@ -65,8 +65,8 @@
             }
             ?>
             <br>
-            <input type="submit" value="Créer">
-            <input type="reset" value="Vider">
+            <button><input type="submit" value="Créer"></button>
+            <button><input type="reset" value="Vider"></button>
         </fieldset>
     </form>
     <a href=<?= url_to("page_salarie") ?>><button>Retour</button></a>

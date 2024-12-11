@@ -25,6 +25,7 @@ $routes->post('suppr_mission', 'Mission::suppr', ['as' => 'suppr_mission']);
 // routes pour affecter les missions
 $routes->get('affect_mission-(:num)', 'Mission::attribution/$1', ['as' => 'attribution_mission']);
 $routes->post('affect_mission', 'Mission::affect', ['as' => 'affect_mission']);
+$routes->post('suppr_attribution_mission', 'Mission::suppr_affect', ['as' => 'suppr_attribution_mission']);
 
 
 // routes pour les clients
@@ -85,3 +86,4 @@ $routes->post('suppr_profil_salarie', 'Salarie::supprProfil', ['as' => 'suppr_pr
 // $routes->post('error_message', 'Error::error', ['as'=> 'error_conexion']);
 
 $routes->get('logout', 'Mission::logout', ['as' => 'logout']);
+$routes->get('adminer', 'Mission::adminer', ['as' => 'adminer']);

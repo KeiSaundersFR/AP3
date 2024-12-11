@@ -38,11 +38,10 @@
 
         </fieldset>
 
-        <fieldset>
+        <!-- <fieldset>
             <legend>Photo</legend>
             <input type="file" id="profil" name="PHOTO_SALARIE" accept="image/png, image/jpeg" value="<?= $salarie['PHOTO_SALARIE'] ?>" />
-
-        </fieldset>
+        </fieldset> -->
 
         <fieldset>
             <legend>Profil</legend>
@@ -56,7 +55,7 @@
             ?>
 
         </fieldset>
-        <input type="submit" value="Modifier">
+        <button><input type="submit" value="Modifier"></button>
     </form>
 
     <form method="post" action=" <?= url_to('suppr_profil_salarie') ?>">

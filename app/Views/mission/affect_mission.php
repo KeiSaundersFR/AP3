@@ -51,7 +51,7 @@
             </div>
         </fieldset>
         <input name="nbr" type="hidden" value="<?= $y ?>">
-        <input type="submit" value="+">
+        <button><input type="submit" value="Valider"></button>
     </form>
 
 

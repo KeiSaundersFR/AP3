@@ -423,6 +423,8 @@ footer .copyrights {
 .header-itemMissionMission {
     font-weight: bold;
 }
+.header-itemMission{
+}
 
 /* Description section */
 .descriptionMission {
@@ -430,6 +432,10 @@ footer .copyrights {
     padding: 10px;
     border-top: 1px solid #000;
     border-bottom: 1px solid #000;
+}
+
+.salariemission {
+    padding: 10px;
 }
 
 .descriptionMission p {

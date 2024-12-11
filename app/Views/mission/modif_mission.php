@@ -42,7 +42,7 @@
             ?>
 
         </fieldset>
-        <input type="submit" value="Modifier">
+        <button><input type="submit" value="Modifier"></button>
     </form>
 
     <form method="post" action=" <?= url_to('suppr_profil_mission') ?>">

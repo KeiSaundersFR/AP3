@@ -34,6 +34,10 @@ class Mission extends BaseController
         return redirect('logout');
     }
 
+    public function adminer(){
+        return redirect('adminer');
+    }
+
     // methode vue list mission
     public function list()
     {
@@ -58,6 +62,8 @@ class Mission extends BaseController
         }
 
         $mission = $this->missionModel->find($missionId);
+        // var_dump($mission);
+        // die();
         $client = $this->clientModel->find($mission['ID_CLIENT']);
         $profilsMission = $this->missionModel->getProfil($missionId);
         $profilIds = [];
@@ -65,11 +71,15 @@ class Mission extends BaseController
         foreach ($profilsMission as $profilMission) {
             $profilIds[] = $profilMission['ID_PROFIL'];
         }
+        $listSalarieMission = $this->salarieModel->findSalarie($missionId);
+        // var_dump($listSalarieMission);
+        // die();
 
         return view('mission/gestion_mission', [
             'mission' => $mission,
             'client' => $client,
-            'profilsMission' => $profilsMission
+            'profilsMission' => $profilsMission,
+            'listSalarieMission' =>$listSalarieMission
         ]);
     }
 
@@ -211,6 +221,17 @@ class Mission extends BaseController
             'profilsSalarie' => $profilsSalarie,
         ]);
     }
+    public function suppr_affect()
+    {
+        $idMission = $this->request->getPost(['ID_MISSION']);
+        $this->missionModel->deleteAllSalarieMission($idMission);
+        $data = ['STATUS' => 'non affect'];
+        $this->missionModel->update($idMission,$data);
+        return redirect()->route('list_mission');
+        // var_dump($idMission);
+        // die();
+        
+    }
 
     public function affect()
     {
@@ -259,7 +280,8 @@ class Mission extends BaseController
 
         $data = ['STATUS' => 'affect'];
         $this->missionModel->update($idMission,$data);
-        return redirect()->to(url_to("gestion_mission", $idMission));
+        // return redirect()->to(url_to("gestion_mission", $idMission));
+        return redirect()->route('list_mission');
     }
 
     public function ajoutProfil()

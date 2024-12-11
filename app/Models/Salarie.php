@@ -117,4 +117,12 @@ class Salarie extends Model
         $builder->Where('ID_PROFIL', $idProfil);
         $builder->delete();
     }
+
+    public function findSalarie($idMission){
+        $db= \Config\Database::connect();
+        $builder = $db->table('salarie_mission');
+        $builder->join('salarie', 'salarie.ID_SALARIE = salarie_mission.ID_SALARIE');
+        $query = $builder->getWhere(['salarie_mission.ID_MISSION' => $idMission]);
+        return $query->getResultArray();
+    }
 }
