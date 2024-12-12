@@ -41,7 +41,7 @@
 
                 <form method="post" action=" <?= url_to('suppr_salarie') ?>">
                     <input id="ID_SALARIE" name="ID_SALARIE" type="hidden" value="<?= $salarie['ID_SALARIE'] ?>">
-                    <input type="submit" value="supprimer">
+                    <input type="submit" value="supprimer"onclick="return confirm('Voulez-vous vraiment supprimer ce salarié ?')">
                 </form>
             </div>
         </div>

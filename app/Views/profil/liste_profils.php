@@ -22,7 +22,7 @@
 
                             <form method="post" action=" <?= url_to('suppr_profil') ?>">
                                 <input id="ID_PROFIL" name="ID_PROFIL" type="hidden" value="<?= $profil['ID_PROFIL'] ?>">
-                                <button><input type="submit" value="supprimer"></button>
+                                <button onclick="return confirm('Voulez-vous vraiment supprimer ce profil ?')"><input type="submit" value="supprimer" ></button>
                         </div>
                         </form>
                     </div>

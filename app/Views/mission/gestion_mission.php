@@ -48,7 +48,7 @@
             <a href=<?= url_to("modif_mission", $mission['ID_MISSION']) ?>><button>Modifier</button></a>
             <form method="post" action=" <?= url_to('suppr_mission') ?>">
                 <input id="ID_MISSION" name="ID_MISSION" type="hidden" value="<?= $mission['ID_MISSION'] ?>">
-                <button><input type="submit" value="supprimer"></button>
+                <button onclick="return confirm('Voulez-vous vraiment supprimer cette mission ?')"><input type="submit" value="supprimer" ></button>
             </form>
             <a href=<?= url_to("list_mission") ?>><button>Retour</button></a>
         </div>
