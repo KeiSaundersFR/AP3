@@ -4,54 +4,64 @@
 <!-- <link rel="stylesheet" type="text/css" href="css/main.css" /> -->
 
 <body>
-    <a href=<?= url_to("create_profil") ?>>Ajouter profil</a>
-    <div>
-        <?php
-        foreach ($listeProfils as $profil) {
-        ?>
-            <p>
+    <a href=<?= url_to("create_profil") ?>><button>Ajouter profil</button></a>
+    <div class="profil">
+        <fieldset class="fieldlist">
+            <legend>
+                <h4 class="h4p">Liste des Profils</h4>
+            </legend>
+            <div class="list_profil" style="overflow:scroll; height:400px;">
                 <?php
-
-                echo $profil['INTITULE_PROFIL'],
-                "<br/>",
-                '<a href="' . url_to("modif_profil", $profil['ID_PROFIL']) . '" >Modifier</a>';
+                foreach ($listeProfils as $profil) {
                 ?>
-            <form method="post" action=" <?= url_to('suppr_profil') ?>">
-                <input id="ID_PROFIL" name="ID_PROFIL" type="hidden" value="<?= $profil['ID_PROFIL'] ?>">
-                <input type="submit" value="supprimer">
-            </form>
+                    <div class="div_profil">
+                        <?php
 
+                        echo '<h4>' . $profil['INTITULE_PROFIL'] . '</h4>'; ?>
+                        <div class="button_profil">
 
-            </p><br>
-        <?php
-
-
-        }
-        ?>
-    </div>
-    <div>
-        <form action="">
-            <fieldset>
-                <legend>Ajout de profil</legend>
-                <input type="test">
-                <input type="submit" value="ajouter">
-            </fieldset>
-        </form>
-    </div>
-    <div>
-        <form action="">
-            <fieldset>
-                <legend>Modification de profil</legend>
-                <select>
-                    <?php
-                    // foreach($liste_profil as $profil){
-                    //     echo '<option value="'. $profil['ID_PROFIL'] .'">'. $profil['NOM_PROFIL'] .'</option>';
-                    // }
-                    ?>
-                </select>
-                <input type="submit" value="modifier">
-            </fieldset>
-        </form>
+                            <form method="post" action=" <?= url_to('suppr_profil') ?>">
+                                <input id="ID_PROFIL" name="ID_PROFIL" type="hidden" value="<?= $profil['ID_PROFIL'] ?>">
+                                <button><input type="submit" value="supprimer"></button>
+                        </div>
+                        </form>
+                    </div>
+                <?php
+                }
+                ?>
+            </div>
+        </fieldset>
+        <div class="list_profil_ajout">
+            <div>
+                <form method="post" action="<?= url_to('ajout_profil') ?>">
+                    <fieldset>
+                        <legend>
+                            <h4 class="h4p">Ajout de profil</h4>
+                        </legend>
+                        <input type="text" name="INTITULE_PROFIL">
+                        <button><input type="submit" value="ajouter"></button>
+                    </fieldset>
+                </form>
+            </div>
+            <div>
+                <form method="post" action="<?= url_to('update_profil') ?>">
+                    <fieldset>
+                        <legend>
+                            <h4>Modification de profil</h4>
+                        </legend>
+                        <select name="ID_PROFIL">
+                            <?php
+                            foreach ($listeProfils as $profil) {
+                                echo '<option value="' . $profil['ID_PROFIL'] . '">' . $profil['INTITULE_PROFIL'] . '</option>';
+                            }
+                            ?>
+                        </select>
+                        <input type="text" name="INTITULE_PROFIL">
+                        <button><input type="submit" value="modifier"></button>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
     </div>
 </body>
 

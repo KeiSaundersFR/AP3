@@ -24,6 +24,8 @@ class Profil extends BaseController
             return redirect()->route('list_mission');
         }
         $profils = $this->profilModel->findAll();
+        // dd($profils);
+        // die();
         return view('profil/liste_profils.php', [
             'listeProfils' => $profils
         ]);
@@ -43,21 +45,23 @@ class Profil extends BaseController
             return redirect()->route('list_mission');
         }
         $profilData = $this->request->getPost();
+        // var_dump($profilData);
+        // die();
         $this->profilModel->save($profilData);
         return redirect('page_profil');
     }
 
-    public function modif($profilId)
-    {
-        if (!$this->isAuthorized()) {
-            return redirect()->route('list_mission');
-        }
-        $profil = $this->profilModel->find($profilId);
+    // public function modif($profilId)
+    // {
+    //     if (!$this->isAuthorized()) {
+    //         return redirect()->route('list_mission');
+    //     }
+    //     $profil = $this->profilModel->find($profilId);
 
-        return view('profil/modif_profil.php', [
-            'profil' => $profil
-        ]);
-    }
+    //     return view('profil/modif_profil.php', [
+    //         'profil' => $profil
+    //     ]);
+    // }
 
     public function update() 
     {
@@ -65,6 +69,8 @@ class Profil extends BaseController
             return redirect()->route('list_mission');
         }
         $profilData = $this->request->getPost();
+        // var_dump($profilData);
+        // die();
         $this->profilModel->save($profilData);
         return redirect('page_profil');
     }

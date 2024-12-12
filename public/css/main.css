@@ -504,3 +504,41 @@ button:hover {
     padding: 12px 20px;
     border: 2px solid #ccc;
 }
+
+div.list_profil {
+    margin: 2%;
+    background-color: #36686f;
+}
+
+.fieldlist{
+    width: 50%;
+    background-color: #36686f;
+}
+
+.h4p {
+    margin: initial;
+}
+
+div.list_profil_ajout {
+    width: 50%;
+    margin: 2%;
+    max-height: fit-content;
+    background-color: #36686f;
+}
+
+div.profil {
+    display:flex;
+}
+
+div.div_profil{
+    background-color: white;
+    display:flex;
+    justify-content: space-between;
+    margin: 10px;
+    padding-left: 10px;
+}
+
+div.button_profil{
+    display: flex;
+    padding: 10px;
+}
