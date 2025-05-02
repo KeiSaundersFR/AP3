@@ -50,7 +50,7 @@ $rhu = $user && $user->inGroup('rhu');
         <div class="environment">
 
             <p>Page rendered in {elapsed_time} seconds</p>
-            <a href="https://github.com/Peraty12" target="_blank">https://github.com/Peraty12</a>
+            <a href="https://github.com/KeiSaundersFR" target="_blank">https://github.com/KeiSaundersFR</a>
             <p>Environment: <?= ENVIRONMENT ?></p>
 
         </div>
