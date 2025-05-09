@@ -34,8 +34,8 @@ class Mission extends BaseController
         return redirect('logout');
     }
 
-    public function adminer(){
-        return redirect('adminer');
+    public function phpmyadmin(){
+        return redirect('phpmyadmin');
     }
 
     // methode vue list mission

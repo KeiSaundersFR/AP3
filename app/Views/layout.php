@@ -26,7 +26,7 @@ $rhu = $user && $user->inGroup('rhu');
                 <?= $com ? '' : '<li><a href="' . url_to('page_salarie') . '">liste salarié</a></li>' ?>
                 <?= $rhu ? '' : '<li><a href="' . url_to('page_client') . '">liste client</a></li>' ?>
                 <?= $admin ? '<li><a href="' . url_to('page_profil') . '">liste profil</a></li>' : '' ?>
-                <?= $admin ? '<li><a href="' . url_to('adminer') . '" target="_blank" >Adminer</a></li>' : '' ?>
+                <?= $admin ? '<li><a href="' . url_to('phpmyadmin') . '" target="_blank" >phpmyadmin</a></li>' : '' ?>
                 <li><a href="<?= url_to('logout') ?>">Deconnexion</a></li>
             </ul>
         </nav>

@@ -86,4 +86,4 @@ $routes->post('suppr_profil_salarie', 'Salarie::supprProfil', ['as' => 'suppr_pr
 // $routes->post('error_message', 'Error::error', ['as'=> 'error_conexion']);
 
 $routes->get('logout', 'Mission::logout', ['as' => 'logout']);
-$routes->get('adminer', 'Mission::adminer', ['as' => 'adminer']);
+$routes->get('phpmyadmin', 'Mission::phpmyadmin', ['as' => 'phpmyadmin']);
