@@ -4,6 +4,7 @@
 <link rel="stylesheet" type="text/css" href="css/main.css" />
 
 <a class=button href="<?= url_to('ajout_salarie') ?>"><button>Ajouter un salarié</button></a>
+<a class="button" href="<?= url_to('list_accreditation') ?>"> <button>Salariés accrédités</button></a>
 
 <div class="scontent">
     <?php
@@ -23,6 +24,11 @@
                     <p><?= $salarie['CIVILITE'] ?></p>
                     <p><?= $salarie['ADRESSE_SALARIE'] ?></p>
                     <p><?= $salarie['CODE_POSTAL_SALARIE'] ?> <?= $salarie['VILLE_SALARIE'] ?></p>
+                    <?php if (!empty($salarie['ACCREDITATION']) && $salarie['ACCREDITATION']) : ?>
+                        <p>Accréditation : Oui</p>
+                    <?php else : ?>
+                        <p>Accréditation : Non</p>
+                    <?php endif; ?>
                 </fieldset>
                 <fieldset>
                     <legend>Profil</legend>
@@ -41,7 +47,7 @@
 
                 <form method="post" action=" <?= url_to('suppr_salarie') ?>">
                     <input id="ID_SALARIE" name="ID_SALARIE" type="hidden" value="<?= $salarie['ID_SALARIE'] ?>">
-                    <input type="submit" value="supprimer"onclick="return confirm('Voulez-vous vraiment supprimer ce salarié ?')">
+                    <input type="submit" value="supprimer" onclick="return confirm('Voulez-vous vraiment supprimer ce salarié ?')">
                 </form>
             </div>
         </div>

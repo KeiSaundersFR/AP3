@@ -50,6 +50,15 @@ $routes->post('update_salarie', 'Salarie::update', ['as' => 'update_salarie']);
 
 $routes->post('suppr_salarie', 'Salarie::suppr', ['as' => 'suppr_salarie']);
 
+//routes pour les accréditations
+$routes->get('list_accreditation', 'Salarie::listeAccreditation', ['as' => 'liste_accreditation']);
+
+$routes->get('create_accreditation', 'Salarie::ajoutAccreditation', ['as' => 'ajout_accreditation']);
+$routes->post('create_accreditation', 'Salarie::createAccreditation', ['as' => 'create_accreditation']);
+
+$routes->get('update_accreditation-(:num)', 'Salarie::modifAccreditation/$1', ['as' => 'modif_accreditation']);
+$routes->post('update_accreditation', 'Salarie::updateAccreditation', ['as' => 'update_accreditation']);
+
 // routes V2
 
 // routes pour les profils

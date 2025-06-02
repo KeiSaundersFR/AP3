@@ -33,8 +33,6 @@
             <label for="telephone">Telephone</label>
             <input class="intitule" id="telephone" name="NUM_TELEPHONE_SALARIE" type="tel" min="10" max="10" required><br>
 
-
-
             <label for="adresse">Adresse</label>
             <input class="intitule" id="adresse" name="ADRESSE_SALARIE" type="text" required><br>
 
@@ -50,6 +48,13 @@
                 <option value="homme">Homme</option>
                 <option value="femme">Femme</option>
             </select><br>
+
+            <label for="accreditation">Accréditation</label>
+            <select name="ACCREDITATION" id="accreditation" required>
+                <option value="0">Non</option>
+                <option value="1">Oui</option>
+            </select><br>
+           
         </fieldset>
         <!-- <fieldset>
             <legend>Photo</legend>
